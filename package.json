@@ -2,10 +2,10 @@
   "name": "potty-tracker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
     "client-dev": "cd client && npm run start",
-    "server-dev": "node --inspect index.js",
+    "server-dev": "nodemon --inspect src/server.js",
     "dev": "concurrently npm:server-dev npm:client-dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -32,12 +32,16 @@
   },
   "homepage": "https://github.com/rcyork/potty-tracker#readme",
   "dependencies": {
+    "arangojs": "^6.9.0",
+    "body-parser": "^1.18.3",
+    "config": "^3.0.1",
     "express": "^4.16.4"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
     "husky": "^1.2.1",
     "lint-staged": "^8.1.0",
+    "nodemon": "^1.18.9",
     "prettier": "^1.15.3"
   }
 }
