@@ -1,10 +1,10 @@
-const cxn = require('../connection');
+import cxn from '../connection';
 
-module.exports.getAllLetOuts = async () => {
+export const getAllLetOuts = async () => {
   return cxn.documents.letOuts.all().then(cursor => cursor.all());
 };
 
-module.exports.createLetOut = async ({ leo, lucy }) => {
+export const createLetOut = async (leo: string, lucy: string) => {
   const doc = { leo, lucy, date: Date.now() };
 
   return cxn.documents.letOuts
@@ -12,7 +12,7 @@ module.exports.createLetOut = async ({ leo, lucy }) => {
     .then(data => data.new);
 };
 
-module.exports.updateLetOut = async (key, doc) => {
+export const updateLetOut = async (key: string, doc: object) => {
   return cxn.documents.letOuts
     .update(key, doc, { returnNew: true })
     .then(data => data.new);

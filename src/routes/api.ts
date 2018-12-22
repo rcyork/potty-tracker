@@ -1,11 +1,11 @@
-const { Router } = require('express');
+import { Router, Request, Response } from 'express';
 
-const {
+import {
   getAllLetOuts,
   createLetOut,
   updateLetOut,
-} = require('../db/queries/letOuts');
-const { createJsonMiddleware } = require('./routeHelpers');
+} from '../db/queries/letOuts';
+import { createJsonMiddleware } from './routeHelpers';
 
 const router = Router();
 
@@ -13,7 +13,9 @@ router.get('/let-outs', createJsonMiddleware(() => getAllLetOuts()));
 
 router.post(
   '/let-outs',
-  createJsonMiddleware((req, res) => createLetOut(req.body)),
+  createJsonMiddleware((req: Request, res: Response) =>
+    createLetOut(req.body.leo, req.body.lucy),
+  ),
 );
 
 router.post(
@@ -21,4 +23,4 @@ router.post(
   createJsonMiddleware((req, res) => updateLetOut(req.params.key, req.body)),
 );
 
-module.exports = router;
+export default router;
