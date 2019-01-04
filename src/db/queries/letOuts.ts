@@ -17,3 +17,7 @@ export const updateLetOut = async (key: string, doc: object) => {
     .update(key, doc, { returnNew: true })
     .then(data => data.new);
 };
+
+export const deleteLetOut = async (key: string) => {
+  return cxn.documents.letOuts.remove(key);
+};

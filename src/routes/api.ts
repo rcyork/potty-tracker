@@ -4,6 +4,7 @@ import {
   getAllLetOuts,
   createLetOut,
   updateLetOut,
+  deleteLetOut,
 } from '../db/queries/letOuts';
 import { createJsonMiddleware } from './routeHelpers';
 
@@ -21,6 +22,11 @@ router.post(
 router.post(
   '/let-outs/:key',
   createJsonMiddleware((req, res) => updateLetOut(req.params.key, req.body)),
+);
+
+router.delete(
+  '/let-outs/:key',
+  createJsonMiddleware((req, res) => deleteLetOut(req.params.key)),
 );
 
 export default router;
