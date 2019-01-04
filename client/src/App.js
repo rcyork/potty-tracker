@@ -3,26 +3,26 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  state = { message: null };
+  state = { data: null };
 
   componentDidMount() {
-    fetch('/message')
+    fetch('/api/let-outs')
       .then(res => res.json())
-      .then(({ message }) => {
+      .then(data => {
         this.setState({
-          message,
+          data,
         });
       });
   }
 
   render() {
-    const { message } = this.state;
+    const { data } = this.state;
 
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          {message ? message : 'Wassup'}
+          {JSON.stringify(data)}
         </header>
       </div>
     );
