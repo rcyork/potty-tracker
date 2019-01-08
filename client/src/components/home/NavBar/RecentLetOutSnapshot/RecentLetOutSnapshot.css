@@ -1,0 +1,32 @@
+.recentLetOutSnapshot {
+  display: grid;
+  grid-template-columns: repeat(3, max-content);
+  height: 100%;
+
+  background: var(--grey_light);
+  color: var(--grey);
+
+  font-size: 2rem;
+  font-weight: 100;
+}
+
+.snapshotTime {
+  display: grid;
+  align-content: center;
+  padding: 0 1rem;
+}
+
+.snapshotNumber {
+  display: grid;
+  align-content: center;
+  justify-content: center;
+  width: 3rem;
+}
+
+.snapshotNumber--leo {
+  background: var(--blue_light);
+}
+
+.snapshotNumber--lucy {
+  background: var(--red_light);
+}
