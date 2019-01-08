@@ -1,0 +1,11 @@
+.pottySelectButton {
+  font-size: 3rem;
+}
+
+.pottySelectButton--leo {
+  background: var(--blue);
+}
+
+.pottySelectButton--lucy {
+  background: var(--red);
+}

@@ -1,0 +1,12 @@
+.logCard__pottyNumber {
+  width: 5rem;
+  font-size: 3rem;
+}
+
+.logCard__pottyNumber--leo {
+  background: var(--blue);
+}
+
+.logCard__pottyNumber--lucy {
+  background: var(--red);
+}

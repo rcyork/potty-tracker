@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 // components
 import Home from './components/home/Home';
+import Log from './components/log/Log';
 
 // css
 import './App.css';
@@ -25,6 +26,7 @@ class App extends Component {
     return (
       <div className="app">
         <Home />
+        <Log />
       </div>
     );
   }

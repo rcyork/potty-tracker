@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr max-content;
 
-  height: 3rem;
+  height: 5rem;
 }
 
 .viewLogButton {
@@ -10,7 +10,7 @@
   background: var(--grey_dark);
 
   font-size: 2rem;
-  line-height: 3rem;
+  font-weight: 200;
 }
 
 .fa-clipboard-list {
