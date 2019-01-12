@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 import DateLabel from './DateLabel/DateLabel';
 import LogCard from './LogCard/LogCard';
@@ -8,7 +9,9 @@ import './Log.css';
 const Log = () => {
   return (
     <div className="logWrap">
-      <button className="cancel">cancel</button>
+      <NavLink className="cancel" exact to="/">
+        cancel
+      </NavLink>
       <div className="scrollingLog">
         <DateLabel />
         <div className="logCardsGridGap">

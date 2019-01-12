@@ -6,6 +6,11 @@
 }
 
 .viewLogButton {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  align-content: center;
+  justify-content: center;
+
   color: var(--white);
   background: var(--grey_dark);
 

@@ -1,35 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 // components
+import { LetOutContext } from './components/Provider';
 import Home from './components/home/Home';
 import Log from './components/log/Log';
 
 // css
 import './App.css';
 
-class App extends Component {
-  state = { data: null };
-
-  // componentDidMount() {
-  //   fetch('/api/let-outs')
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       this.setState({
-  //         data,
-  //       });
-  //     });
-  // }
-
-  render() {
-    const { data } = this.state;
-
-    return (
+const App = () => {
+  return (
+    <BrowserRouter>
       <div className="app">
-        <Home />
-        <Log />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/log" component={Log} />
+        </Switch>
       </div>
-    );
-  }
-}
+    </BrowserRouter>
+  );
+};
 
 export default App;

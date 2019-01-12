@@ -1,6 +1,5 @@
 .homeWrap {
   display: grid;
   grid-template-rows: max-content 1fr 1fr max-content;
-  display: none;
   height: 100vh;
 }

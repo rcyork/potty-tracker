@@ -2,9 +2,14 @@ import React from 'react';
 
 import './PottySelectButton.css';
 
-const PottySelectButton = ({ dog }) => {
+const PottySelectButton = ({ dogName, currentNumber, updatePottyOption }) => {
   return (
-    <button className={`pottySelectButton pottySelectButton--${dog}`}>1</button>
+    <button
+      className={`pottySelectButton pottySelectButton--${dogName}`}
+      onClick={updatePottyOption}
+    >
+      {currentNumber}
+    </button>
   );
 };
 

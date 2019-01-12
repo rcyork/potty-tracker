@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { NavLink } from 'react-router-dom';
 import RecentLetOutSnapshot from './RecentLetOutSnapshot/RecentLetOutSnapshot';
 
 // css
@@ -8,10 +8,10 @@ import './NavBar.css';
 const NavBar = () => {
   return (
     <div className="navBar">
-      <button className="viewLogButton">
+      <NavLink className="viewLogButton" to="/log">
         <i className="fas fa-clipboard-list " />
         view log
-      </button>
+      </NavLink>
       <RecentLetOutSnapshot />
     </div>
   );

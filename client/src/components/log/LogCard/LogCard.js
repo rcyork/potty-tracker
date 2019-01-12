@@ -10,8 +10,8 @@ const LogCard = () => {
   return (
     <div className="logCard">
       <TimeLabel />
-      <PottyNumber dog="leo" />
-      <PottyNumber dog="lucy" />
+      <PottyNumber dogName="leo" />
+      <PottyNumber dogName="lucy" />
       <DeleteButton />
     </div>
   );

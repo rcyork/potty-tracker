@@ -2,9 +2,11 @@ import React from 'react';
 
 import './PottyNumber.css';
 
-const PottyNumber = ({ dog }) => {
+const PottyNumber = ({ dogName }) => {
   return (
-    <button className={`logCard__pottyNumber  logCard__pottyNumber--${dog}`}>
+    <button
+      className={`logCard__pottyNumber  logCard__pottyNumber--${dogName}`}
+    >
       1
     </button>
   );
