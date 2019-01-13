@@ -17,6 +17,16 @@ export class Provider extends React.Component {
       {
         leo: '3',
         lucy: '3',
+        dateAndTime: new Date('1995-12-17T03:22:00'),
+      },
+      {
+        leo: '2',
+        lucy: '2',
+        dateAndTime: new Date('1995-12-17T03:23:00'),
+      },
+      {
+        leo: '3',
+        lucy: '3',
         dateAndTime: new Date(),
       },
     ],

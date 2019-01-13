@@ -6,10 +6,10 @@ import DeleteButton from './DeleteButton/DeleteButton';
 
 import './LogCard.css';
 
-const LogCard = () => {
+const LogCard = ({ time }) => {
   return (
     <div className="logCard">
-      <TimeLabel />
+      <TimeLabel time={time} />
       <PottyNumber dogName="leo" />
       <PottyNumber dogName="lucy" />
       <DeleteButton />

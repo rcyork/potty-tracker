@@ -11,14 +11,18 @@ import './App.css';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <div className="app">
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/log" component={Log} />
-        </Switch>
-      </div>
-    </BrowserRouter>
+    <LetOutContext.Consumer>
+      {({ state }) => (
+        <BrowserRouter>
+          <div className="app">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/log" render={() => <Log state={state} />} />
+            </Switch>
+          </div>
+        </BrowserRouter>
+      )}
+    </LetOutContext.Consumer>
   );
 };
 
