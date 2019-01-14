@@ -12,12 +12,21 @@ import './App.css';
 const App = () => {
   return (
     <LetOutContext.Consumer>
-      {({ state }) => (
+      {({ state, updateLogOption, deleteLogEntry }) => (
         <BrowserRouter>
           <div className="app">
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/log" render={() => <Log state={state} />} />
+              <Route
+                path="/log"
+                render={() => (
+                  <Log
+                    state={state}
+                    updateLogOption={updateLogOption}
+                    deleteLogEntry={deleteLogEntry}
+                  />
+                )}
+              />
             </Switch>
           </div>
         </BrowserRouter>

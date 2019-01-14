@@ -7,8 +7,8 @@ import LogCard from './LogCard/LogCard';
 
 import './Log.css';
 
-const Log = ({ state }) => {
-  const logSortedByDays = state.letOuts.reduce((acc, item) => {
+const Log = ({ state, updateLogOption, deleteLogEntry }) => {
+  let logSortedByDays = state.letOuts.reduce((acc, item) => {
     const dateLabel = moment(item.dateAndTime).format('MMMM Do, YYYY');
     const matchingIndex = acc.findIndex(accItem => accItem[0] === dateLabel);
     if (matchingIndex > -1) {
@@ -22,6 +22,8 @@ const Log = ({ state }) => {
 
     return [...acc, [dateLabel, [item]]];
   }, []);
+
+  logSortedByDays = logSortedByDays.sort((a, b) => (a[0] > b[0] ? -1 : 1));
 
   return (
     <div className="logWrap">
@@ -38,7 +40,11 @@ const Log = ({ state }) => {
                   return (
                     <LogCard
                       key={item.dateAndTime}
-                      time={moment(item.dateAndTime).format('LT')}
+                      dateAndTime={item.dateAndTime}
+                      leo={item.leo}
+                      lucy={item.lucy}
+                      updateLogOption={updateLogOption}
+                      deleteLogEntry={() => deleteLogEntry(item.dateAndTime)}
                     />
                   );
                 })}

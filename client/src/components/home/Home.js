@@ -10,20 +10,31 @@ import './Home.css';
 const Home = () => {
   return (
     <LetOutContext.Consumer>
-      {({ updatePottyOption, leoCurrent, lucyCurrent }) => (
+      {({
+        updatePottyOption,
+        leoCurrent,
+        lucyCurrent,
+        postLetOut,
+        getNextPottyOption,
+        addLetOut,
+        letOuts,
+      }) => (
         <div className="homeWrap">
-          <NavBar />
+          <NavBar letOuts={letOuts} />
           <PottySelectButton
             dogName="leo"
             currentNumber={leoCurrent}
             updatePottyOption={() => updatePottyOption('leoCurrent')}
+            postLetOut={postLetOut}
           />
           <PottySelectButton
             dogName="lucy"
             currentNumber={lucyCurrent}
             updatePottyOption={() => updatePottyOption('lucyCurrent')}
+            postLetOut={postLetOut}
+            getNextPottyOption={getNextPottyOption}
           />
-          <SaveButton />
+          <SaveButton addLetOut={() => addLetOut()} />
         </div>
       )}
     </LetOutContext.Consumer>

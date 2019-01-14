@@ -2,9 +2,9 @@ import React from 'react';
 
 import './DeleteButton.css';
 
-const DeleteButton = () => {
+const DeleteButton = ({ deleteLogEntry }) => {
   return (
-    <button className="logCard__deleteButton">
+    <button className="logCard__deleteButton" onClick={deleteLogEntry}>
       <i className="fas fa-times fa-5x" />
     </button>
   );

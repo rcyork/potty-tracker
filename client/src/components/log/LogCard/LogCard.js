@@ -6,13 +6,27 @@ import DeleteButton from './DeleteButton/DeleteButton';
 
 import './LogCard.css';
 
-const LogCard = ({ time }) => {
+const LogCard = ({
+  dateAndTime,
+  leo,
+  lucy,
+  updateLogOption,
+  deleteLogEntry,
+}) => {
   return (
     <div className="logCard">
-      <TimeLabel time={time} />
-      <PottyNumber dogName="leo" />
-      <PottyNumber dogName="lucy" />
-      <DeleteButton />
+      <TimeLabel dateAndTime={dateAndTime} />
+      <PottyNumber
+        dogName="leo"
+        number={leo}
+        updateLogOption={() => updateLogOption(dateAndTime, 'leo')}
+      />
+      <PottyNumber
+        dogName="lucy"
+        number={lucy}
+        updateLogOption={() => updateLogOption(dateAndTime, 'lucy')}
+      />
+      <DeleteButton deleteLogEntry={deleteLogEntry} />
     </div>
   );
 };

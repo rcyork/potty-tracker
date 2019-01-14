@@ -1,14 +1,19 @@
 import React from 'react';
+import moment from 'moment';
 
 import '../../../../colors.css';
 import './RecentLetOutSnapshot.css';
 
-const RecentLetOutSnapshot = () => {
+const RecentLetOutSnapshot = ({ letOuts }) => {
   return (
     <div className="recentLetOutSnapshot">
-      <div className="snapshotTime">5:15 PM</div>
-      <div className="snapshotNumber snapshotNumber--leo">1</div>
-      <div className="snapshotNumber snapshotNumber--lucy">3</div>
+      <div className="snapshotTime">
+        {moment(letOuts[0].dateAndTime).format('LT')}
+      </div>
+      <div className="snapshotNumber snapshotNumber--leo">{letOuts[0].leo}</div>
+      <div className="snapshotNumber snapshotNumber--lucy">
+        {letOuts[0].lucy}
+      </div>
     </div>
   );
 };

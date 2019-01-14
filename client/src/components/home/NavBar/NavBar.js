@@ -5,14 +5,14 @@ import RecentLetOutSnapshot from './RecentLetOutSnapshot/RecentLetOutSnapshot';
 // css
 import './NavBar.css';
 
-const NavBar = () => {
+const NavBar = ({ letOuts }) => {
   return (
     <div className="navBar">
       <NavLink className="viewLogButton" to="/log">
         <i className="fas fa-clipboard-list " />
         view log
       </NavLink>
-      <RecentLetOutSnapshot />
+      <RecentLetOutSnapshot letOuts={letOuts} />
     </div>
   );
 };

@@ -12,7 +12,7 @@ export class Provider extends React.Component {
       {
         leo: '2',
         lucy: '2',
-        dateAndTime: new Date(),
+        dateAndTime: new Date('1995-12-17T03:21:00'),
       },
       {
         leo: '3',
@@ -32,19 +32,57 @@ export class Provider extends React.Component {
     ],
   };
 
-  componentDidMount() {
-    fetch('/api/let-outs')
-      .then(res => res.json())
-      .then(letOuts => {
-        this.setState({ letOuts });
-      })
-      .catch(error => console.log(error));
-  }
+  // componentDidMount() {
+  //   fetch('/api/let-outs')
+  //     .then(res => res.json())
+  //     .then(letOuts => {
+  //       this.setState({ letOuts });
+  //     })
+  //     .catch(error => console.log(error));
+  // }
 
   updatePottyOption = dogName => {
     this.setState(state => ({
       [dogName]: this.getNextPottyOption(state[dogName]),
     }));
+  };
+
+  deleteLogEntry = dateAndTime => {
+    this.setState(state => ({
+      letOuts: state.letOuts.filter(entry => entry.dateAndTime !== dateAndTime),
+    }));
+  };
+
+  updateLogOption = (dateAndTime, dogName) => {
+    this.setState(state => ({
+      letOuts: state.letOuts.map(entry => {
+        if (entry.dateAndTime !== dateAndTime) {
+          return entry;
+        }
+
+        return {
+          ...entry,
+          [dogName]: this.getNextPottyOption(entry[dogName]),
+        };
+      }),
+    }));
+  };
+
+  addLetOut = () => {
+    this.setState(state => {
+      return {
+        leoCurrent: '1',
+        lucyCurrent: '1',
+        letOuts: [
+          {
+            dateAndTime: new Date(),
+            leo: state.leoCurrent,
+            lucy: state.lucyCurrent,
+          },
+          ...state.letOuts,
+        ],
+      };
+    });
   };
 
   getNextPottyOption = currentNumber => {
@@ -61,19 +99,6 @@ export class Provider extends React.Component {
     return currentNumber;
   };
 
-  postLetOut() {
-    fetch('/api/let-outs', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        leo: this.state.leoCurrent,
-        lucy: this.state.lucyCurrent,
-      }),
-    });
-  }
-
   render() {
     return (
       <LetOutContext.Provider
@@ -84,6 +109,9 @@ export class Provider extends React.Component {
           letOuts: this.state.letOuts,
           getNextPottyOption: this.getNextPottyOption,
           updatePottyOption: this.updatePottyOption,
+          addLetOut: this.addLetOut,
+          updateLogOption: this.updateLogOption,
+          deleteLogEntry: this.deleteLogEntry,
         }}
       >
         {this.props.children}
