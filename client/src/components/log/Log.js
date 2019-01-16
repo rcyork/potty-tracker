@@ -7,9 +7,11 @@ import LogCard from './LogCard/LogCard';
 
 import './Log.css';
 
-const Log = ({ state, updateLogOption, deleteLogEntry }) => {
-  let logSortedByDays = state.letOuts.reduce((acc, item) => {
-    const dateLabel = moment(item.dateAndTime).format('MMMM Do, YYYY');
+const Log = ({ letOuts, updateLogOption, deleteLogEntry }) => {
+  if (!letOuts) return 'no let outs';
+
+  let logSortedByDays = letOuts.reduce((acc, item) => {
+    const dateLabel = moment(item.date).format('MMMM Do, YYYY');
     const matchingIndex = acc.findIndex(accItem => accItem[0] === dateLabel);
     if (matchingIndex > -1) {
       return acc.map(([day, items], index) => {
@@ -33,23 +35,24 @@ const Log = ({ state, updateLogOption, deleteLogEntry }) => {
       <div className="scrollingLog">
         {logSortedByDays.map(([day, items]) => {
           return (
-            <>
+            <React.Fragment key={day}>
               <DateLabel day={day} />
-              <div className="logCardsGridGap" key={day}>
+              <div className="logCardsGridGap">
                 {items.map(item => {
                   return (
                     <LogCard
-                      key={item.dateAndTime}
-                      dateAndTime={item.dateAndTime}
-                      leo={item.leo}
-                      lucy={item.lucy}
+                      key={item._key}
+                      itemKey={item._key}
+                      date={item.date}
+                      leoNumber={item.leo}
+                      lucyNumber={item.lucy}
                       updateLogOption={updateLogOption}
-                      deleteLogEntry={() => deleteLogEntry(item.dateAndTime)}
+                      deleteLogEntry={deleteLogEntry}
                     />
                   );
                 })}
               </div>
-            </>
+            </React.Fragment>
           );
         })}
       </div>

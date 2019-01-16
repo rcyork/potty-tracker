@@ -7,9 +7,7 @@ import './RecentLetOutSnapshot.css';
 const RecentLetOutSnapshot = ({ letOuts }) => {
   return (
     <div className="recentLetOutSnapshot">
-      <div className="snapshotTime">
-        {moment(letOuts[0].dateAndTime).format('LT')}
-      </div>
+      <div className="snapshotTime">{moment(letOuts[0].date).format('LT')}</div>
       <div className="snapshotNumber snapshotNumber--leo">{letOuts[0].leo}</div>
       <div className="snapshotNumber snapshotNumber--lucy">
         {letOuts[0].lucy}

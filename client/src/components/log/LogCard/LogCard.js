@@ -7,26 +7,27 @@ import DeleteButton from './DeleteButton/DeleteButton';
 import './LogCard.css';
 
 const LogCard = ({
-  dateAndTime,
-  leo,
-  lucy,
+  date,
+  leoNumber,
+  lucyNumber,
   updateLogOption,
   deleteLogEntry,
+  itemKey,
 }) => {
   return (
     <div className="logCard">
-      <TimeLabel dateAndTime={dateAndTime} />
+      <TimeLabel date={date} />
       <PottyNumber
         dogName="leo"
-        number={leo}
-        updateLogOption={() => updateLogOption(dateAndTime, 'leo')}
+        number={leoNumber}
+        updateLogOption={() => updateLogOption(itemKey, 'leo', leoNumber)}
       />
       <PottyNumber
         dogName="lucy"
-        number={lucy}
-        updateLogOption={() => updateLogOption(dateAndTime, 'lucy')}
+        number={lucyNumber}
+        updateLogOption={() => updateLogOption(itemKey, 'lucy', lucyNumber)}
       />
-      <DeleteButton deleteLogEntry={deleteLogEntry} />
+      <DeleteButton deleteLogEntry={() => deleteLogEntry(itemKey)} />
     </div>
   );
 };
