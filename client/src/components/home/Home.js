@@ -3,41 +3,28 @@ import NavBar from './NavBar/NavBar';
 import PottySelectButton from './PottySelectButton/PottySelectButton';
 import SaveButton from './SaveButton/SaveButton';
 
-import { LetOutContext } from '../Provider';
-
 import './Home.css';
 
-const Home = () => {
+const Home = ({ letOuts, state, updatePottyOption, addLetOut }) => {
   return (
-    <LetOutContext.Consumer>
-      {({
-        updatePottyOption,
-        leoCurrent,
-        lucyCurrent,
-        postLetOut,
-        getNextPottyOption,
-        addLetOut,
-        letOuts,
-      }) => (
-        <div className="homeWrap">
-          <NavBar letOuts={letOuts} />
-          <PottySelectButton
-            dogName="leo"
-            currentNumber={leoCurrent}
-            updatePottyOption={() => updatePottyOption('leoCurrent')}
-            postLetOut={postLetOut}
-          />
-          <PottySelectButton
-            dogName="lucy"
-            currentNumber={lucyCurrent}
-            updatePottyOption={() => updatePottyOption('lucyCurrent')}
-            postLetOut={postLetOut}
-            getNextPottyOption={getNextPottyOption}
-          />
-          <SaveButton addLetOut={() => addLetOut()} />
-        </div>
+    <div className="homeWrap">
+      {!letOuts || letOuts.length === 0 ? (
+        <div />
+      ) : (
+        <NavBar letOuts={letOuts} />
       )}
-    </LetOutContext.Consumer>
+      <PottySelectButton
+        dogName="leo"
+        currentNumber={state.leoCurrent}
+        updatePottyOption={() => updatePottyOption('leoCurrent')}
+      />
+      <PottySelectButton
+        dogName="lucy"
+        currentNumber={state.lucyCurrent}
+        updatePottyOption={() => updatePottyOption('lucyCurrent')}
+      />
+      <SaveButton addLetOut={() => addLetOut()} />
+    </div>
   );
 };
 
