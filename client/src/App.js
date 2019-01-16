@@ -99,7 +99,7 @@ class App extends React.Component {
                 lucy: res.lucy,
                 date: res.date,
               },
-              ...prevState.letOuts,
+              ...(prevState.letOuts || []),
             ],
           };
         }),
@@ -122,6 +122,9 @@ class App extends React.Component {
   };
 
   render() {
+    const sortedLetOuts = (this.state.letOuts || []).sort((a, b) =>
+      a.date > b.date ? -1 : 1,
+    );
     return (
       <BrowserRouter>
         <div className="app">
@@ -142,7 +145,7 @@ class App extends React.Component {
               path="/log"
               render={() => (
                 <Log
-                  letOuts={this.state.letOuts}
+                  letOuts={sortedLetOuts}
                   updateLogOption={this.updateLogOption}
                   deleteLogEntry={this.deleteLogEntry}
                 />

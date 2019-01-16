@@ -23,6 +23,7 @@
 .scrollingLog {
   overflow: hidden;
   overflow-y: scroll;
+  background: var(--black_light);
 }
 
 .logCardsGridGap {

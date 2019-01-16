@@ -27,6 +27,8 @@ const Log = ({ letOuts, updateLogOption, deleteLogEntry }) => {
 
   logSortedByDays = logSortedByDays.sort((a, b) => (a[0] > b[0] ? -1 : 1));
 
+  console.log(logSortedByDays);
+
   return (
     <div className="logWrap">
       <NavLink className="cancel" exact to="/">
