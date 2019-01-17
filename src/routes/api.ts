@@ -15,11 +15,11 @@ router.get('/let-outs', createJsonMiddleware(() => getAllLetOuts()));
 router.post(
   '/let-outs',
   createJsonMiddleware((req: Request, res: Response) =>
-    createLetOut(req.body.leo, req.body.lucy),
+    createLetOut(req.body.leo, req.body.lucy, req.body.date),
   ),
 );
 
-router.post(
+router.patch(
   '/let-outs/:key',
   createJsonMiddleware((req, res) => updateLetOut(req.params.key, req.body)),
 );

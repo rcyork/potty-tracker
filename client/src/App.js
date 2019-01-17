@@ -48,7 +48,7 @@ class App extends React.Component {
   updateLogOption = (itemKey, dogName, currentNumber) => {
     const newNumber = this.getNextPottyOption(currentNumber);
     fetch(`/api/let-outs/${itemKey}`, {
-      method: 'POST',
+      method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
