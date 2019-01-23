@@ -1,18 +1,19 @@
 .recentLetOutSnapshot {
   display: grid;
-  grid-template-columns: repeat(3, max-content);
+  grid-template-columns: 2fr 1fr 1fr;
   height: 100%;
 
   background: var(--grey_light);
   color: var(--grey);
 
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 100;
 }
 
 .snapshotTime {
   display: grid;
   align-content: center;
+  justify-content: center;
   padding: 0 1rem;
 }
 
@@ -20,7 +21,7 @@
   display: grid;
   align-content: center;
   justify-content: center;
-  width: 5rem;
+  padding: 0 1rem;
 }
 
 .snapshotNumber--leo {

@@ -14,6 +14,8 @@ class App extends React.Component {
   state = {
     leoCurrent: '1',
     lucyCurrent: '1',
+    currentCustomTime: '',
+    isTimeRequired: false,
     letOuts: null,
   };
 
@@ -48,7 +50,7 @@ class App extends React.Component {
   updateLogOption = (itemKey, dogName, currentNumber) => {
     const newNumber = this.getNextPottyOption(currentNumber);
     fetch(`/api/let-outs/${itemKey}`, {
-      method: 'PATCH',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -77,15 +79,22 @@ class App extends React.Component {
   };
 
   addLetOut = () => {
+    const { currentCustomTime } = this.state;
+    const body = {
+      leo: this.state.leoCurrent,
+      lucy: this.state.lucyCurrent,
+    };
+
+    if (currentCustomTime) {
+      body.date = new Date(currentCustomTime).getTime();
+    }
+
     fetch('/api/let-outs', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        leo: this.state.leoCurrent,
-        lucy: this.state.lucyCurrent,
-      }),
+      body: JSON.stringify(body),
     })
       .then(res => res.json())
       .then(res =>
@@ -93,14 +102,9 @@ class App extends React.Component {
           return {
             leoCurrent: 1,
             lucyCurrent: 1,
-            letOuts: [
-              {
-                leo: res.leo,
-                lucy: res.lucy,
-                date: res.date,
-              },
-              ...(prevState.letOuts || []),
-            ],
+            currentCustomTime: '',
+            isTimeRequired: false,
+            letOuts: [res, ...(prevState.letOuts || [])],
           };
         }),
       )
@@ -121,6 +125,20 @@ class App extends React.Component {
     return currentNumber;
   };
 
+  insertDateTimeLocalInput = () => {
+    this.setState({ isTimeRequired: true });
+  };
+
+  handleCustomTime = customTime => {
+    this.setState({
+      currentCustomTime: customTime,
+    });
+  };
+
+  cancelCustomTime = () => {
+    this.setState({ isTimeRequired: false, currentCustomTime: '' });
+  };
+
   render() {
     const sortedLetOuts = (this.state.letOuts || []).sort((a, b) =>
       a.date > b.date ? -1 : 1,
@@ -138,6 +156,10 @@ class App extends React.Component {
                   state={this.state}
                   updatePottyOption={this.updatePottyOption}
                   addLetOut={this.addLetOut}
+                  insertDateTimeLocalInput={this.insertDateTimeLocalInput}
+                  isTimeRequired={this.state.isTimeRequired}
+                  handleCustomTime={this.handleCustomTime}
+                  cancelCustomTime={this.cancelCustomTime}
                 />
               )}
             />

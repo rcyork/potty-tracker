@@ -1,5 +1,5 @@
 .save {
-  height: 7rem;
+  padding: 1rem 0;
 
   background: var(--green);
   color: var(--white);

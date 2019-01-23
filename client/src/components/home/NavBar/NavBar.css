@@ -1,6 +1,6 @@
 .navBar {
   display: grid;
-  grid-template-columns: 1fr max-content;
+  grid-template-columns: max-content 1fr;
 
   height: 5rem;
 }
@@ -14,10 +14,7 @@
   color: var(--white);
   background: var(--grey_dark);
 
-  font-size: 1.5rem;
   font-weight: 200;
-}
 
-.fa-clipboard-list {
-  margin-right: 1rem;
+  padding: 1rem;
 }

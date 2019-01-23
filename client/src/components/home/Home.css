@@ -3,3 +3,15 @@
   grid-template-rows: max-content 1fr 1fr max-content;
   height: 100vh;
 }
+
+.bottomButtonsWrap {
+  display: grid;
+  grid-template-columns: max-content max-content 1fr;
+}
+
+.editTime,
+.cancelEditTime {
+  padding: 0 1rem;
+  background: var(--grey_dark);
+  color: white;
+}

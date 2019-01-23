@@ -5,7 +5,7 @@ import './SaveButton.css';
 const SaveButton = ({ addLetOut }) => {
   return (
     <button className="save" onClick={addLetOut}>
-      save
+      <i className="fas fa-check" />
     </button>
   );
 };
