@@ -1,8 +1,1 @@
-{
-  "arango": {
-    "url": "http://localhost:8529/",
-    "db": "potty-tracker",
-    "username": "potty-admin",
-    "password": "pottyAdmin"
-  }
-}
+{}

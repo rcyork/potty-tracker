@@ -1,0 +1,7 @@
+{
+  "arango": {
+    "url": "http://18.216.89.25:8529/",
+    "dbName": "potty-tracker",
+    "username": "potty-admin"
+  }
+}
