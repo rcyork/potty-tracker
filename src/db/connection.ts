@@ -21,7 +21,7 @@ const db = new Database({
   url,
 });
 db.useDatabase(dbName);
-db.useBasicAuth(password);
+db.useBasicAuth(username, password);
 
 console.log('Arango connection established');
 
