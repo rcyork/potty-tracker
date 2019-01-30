@@ -1,7 +1,11 @@
 FROM node:10.15.0-jessie as builder
-COPY . /app
+RUN mkdir /app
 WORKDIR /app
-RUN npm install && cd client && npm install
+COPY package.json ./package.json
+RUN npm install
+COPY client/package.json ./client/package.json
+RUN cd client && npm install
+COPY . .
 RUN npm run build
 
 FROM node:10.15.0-jessie
