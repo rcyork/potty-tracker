@@ -1,0 +1,17 @@
+FROM node:10.15.0-jessie as builder
+RUN mkdir /app
+WORKDIR /app
+COPY package.json ./package.json
+RUN npm install
+COPY client/package.json ./client/package.json
+RUN cd client && npm install
+COPY . .
+RUN npm run build
+
+FROM node:10.15.0-jessie
+WORKDIR /app
+COPY --from=0 /app/dist .
+COPY package.json ./
+COPY config ./config
+RUN npm install
+CMD node server.js

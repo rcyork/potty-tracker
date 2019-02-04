@@ -5,9 +5,10 @@
   "main": "src/server.js",
   "scripts": {
     "client-dev": "cd client && npm run start",
+    "build": "tsc && cd client && npm run build && cp -r build/ ../dist/public",
     "server-dev": "npm run watch-ts & npm run watch-node",
     "watch-ts": "tsc -w",
-    "watch-node": "nodemon --inspect dist/server.js --delay 100ms",
+    "watch-node": "NODE_ENV=test nodemon --inspect dist/server.js --delay 100ms",
     "dev": "concurrently npm:server-dev npm:client-dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
