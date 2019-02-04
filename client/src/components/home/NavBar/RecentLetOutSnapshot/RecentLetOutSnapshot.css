@@ -4,9 +4,9 @@
   height: 100%;
 
   background: var(--grey_light);
-  color: var(--grey);
+  color: var(--grey_dark);
 
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 100;
 }
 
