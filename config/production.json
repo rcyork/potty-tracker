@@ -1,7 +1,8 @@
 {
-  "arango": {
-    "url": "http://18.216.89.25:8529/",
+  "mongo": {
+    "prefix": "mongodb+srv://",
+    "username": "potty-admin",
     "dbName": "potty-tracker",
-    "username": "potty-admin"
+    "endpoint": "cluster0-hs0sd.mongodb.net"
   }
 }
