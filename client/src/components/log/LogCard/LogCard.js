@@ -12,7 +12,7 @@ const LogCard = ({
   lucyNumber,
   updateLogOption,
   deleteLogEntry,
-  itemKey,
+  itemId,
 }) => {
   return (
     <div className="logCard">
@@ -20,14 +20,14 @@ const LogCard = ({
       <PottyNumber
         dogName="leo"
         number={leoNumber}
-        updateLogOption={() => updateLogOption(itemKey, 'leo', leoNumber)}
+        updateLogOption={() => updateLogOption(itemId, 'leo', leoNumber)}
       />
       <PottyNumber
         dogName="lucy"
         number={lucyNumber}
-        updateLogOption={() => updateLogOption(itemKey, 'lucy', lucyNumber)}
+        updateLogOption={() => updateLogOption(itemId, 'lucy', lucyNumber)}
       />
-      <DeleteButton deleteLogEntry={() => deleteLogEntry(itemKey)} />
+      <DeleteButton deleteLogEntry={() => deleteLogEntry(itemId)} />
     </div>
   );
 };

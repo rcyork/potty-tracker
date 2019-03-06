@@ -38,12 +38,14 @@
     "arangojs": "^6.9.0",
     "body-parser": "^1.18.3",
     "config": "^3.0.1",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "mongodb": "^3.1.13"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
     "@types/config": "0.0.34",
     "@types/express": "^4.16.0",
+    "@types/mongodb": "^3.1.20",
     "concurrently": "^4.1.0",
     "husky": "^1.2.1",
     "lint-staged": "^8.1.0",

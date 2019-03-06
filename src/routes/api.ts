@@ -20,13 +20,13 @@ router.post(
 );
 
 router.patch(
-  '/let-outs/:key',
-  createJsonMiddleware((req, res) => updateLetOut(req.params.key, req.body)),
+  '/let-outs/:_id',
+  createJsonMiddleware((req, res) => updateLetOut(req.params._id, req.body)),
 );
 
 router.delete(
-  '/let-outs/:key',
-  createJsonMiddleware((req, res) => deleteLetOut(req.params.key)),
+  '/let-outs/:_id',
+  createJsonMiddleware((req, res) => deleteLetOut(req.params._id)),
 );
 
 export default router;

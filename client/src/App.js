@@ -34,22 +34,22 @@ class App extends React.Component {
     }));
   };
 
-  deleteLogEntry = itemKey => {
-    fetch(`/api/let-outs/${itemKey}`, {
+  deleteLogEntry = itemId => {
+    fetch(`/api/let-outs/${itemId}`, {
       method: 'DELETE',
     })
       .then(res => res.json())
       .then(
         this.setState(prevState => ({
-          letOuts: prevState.letOuts.filter(entry => entry._key !== itemKey),
+          letOuts: prevState.letOuts.filter(entry => entry._id !== itemId),
         })),
       )
       .catch(error => console.log(error));
   };
 
-  updateLogOption = (itemKey, dogName, currentNumber) => {
+  updateLogOption = (itemId, dogName, currentNumber) => {
     const newNumber = this.getNextPottyOption(currentNumber);
-    fetch(`/api/let-outs/${itemKey}`, {
+    fetch(`/api/let-outs/${itemId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ class App extends React.Component {
         this.setState(prevState => {
           return {
             letOuts: prevState.letOuts.map(entry => {
-              if (entry._key !== itemKey) {
+              if (entry._id !== itemId) {
                 return entry;
               } else {
                 return {
@@ -86,7 +86,7 @@ class App extends React.Component {
     };
 
     if (currentCustomTime) {
-      body.date = new Date(currentCustomTime).getTime();
+      body.date = new Date(currentCustomTime).toISOString();
     }
 
     fetch('/api/let-outs', {

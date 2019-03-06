@@ -4,5 +4,12 @@
     "dbName": "potty-tracker",
     "username": "potty-admin",
     "password": "pottyAdmin"
+  },
+  "mongo": {
+    "prefix": "mongodb://",
+    "username": "",
+    "password": "",
+    "dbName": "potty-tracker",
+    "endpoint": "localhost:27017"
   }
 }

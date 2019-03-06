@@ -1,7 +1,12 @@
-import cxn from '../connection';
+import { ObjectId } from 'mongodb';
+import db from '../connection';
 
 export const getAllLetOuts = async () => {
-  return cxn.documents.letOuts.all().then(cursor => cursor.all());
+  return db
+    .get()
+    .collection('letOuts')
+    .find()
+    .toArray();
 };
 
 export const createLetOut = async (
@@ -9,19 +14,31 @@ export const createLetOut = async (
   lucy: string,
   date?: number,
 ) => {
-  const doc = { leo, lucy, date: date || Date.now() };
+  const doc = { leo, lucy, date: date ? new Date(date) : new Date() };
 
-  return cxn.documents.letOuts
-    .save(doc, { returnNew: true })
-    .then(data => data.new);
+  return db
+    .get()
+    .collection('letOuts')
+    .insertOne(doc)
+    .then(res => res.ops[0]);
 };
 
-export const updateLetOut = async (key: string, doc: object) => {
-  return cxn.documents.letOuts
-    .update(key, doc, { returnNew: true })
-    .then(data => data.new);
+export const updateLetOut = async (_id: string, doc: object) => {
+  return db
+    .get()
+    .collection('letOuts')
+    .findOneAndUpdate(
+      { _id: new ObjectId(_id) },
+      { $set: doc },
+      { returnOriginal: false },
+    )
+    .then(res => res.value);
 };
 
-export const deleteLetOut = async (key: string) => {
-  return cxn.documents.letOuts.remove(key);
+export const deleteLetOut = async (_id: string) => {
+  return db
+    .get()
+    .collection('letOuts')
+    .findOneAndDelete({ _id: new ObjectId(_id) })
+    .then(res => res.value);
 };

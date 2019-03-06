@@ -41,8 +41,8 @@ const Log = ({ letOuts, updateLogOption, deleteLogEntry }) => {
                 {items.map(item => {
                   return (
                     <LogCard
-                      key={item._key}
-                      itemKey={item._key}
+                      key={item._id}
+                      itemId={item._id}
                       date={item.date}
                       leoNumber={item.leo}
                       lucyNumber={item.lucy}

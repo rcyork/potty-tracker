@@ -1,31 +1,31 @@
-import { Database } from 'arangojs';
+import { MongoClient, Db } from 'mongodb';
 import config from 'config';
 
-import createDocumentInstances from './collections/documents';
+const prefix = (process.env.DB_PREFIX = config.get('mongo.prefix'));
+const username = process.env.DB_USERNAME || config.get('mongo.username');
+const password = process.env.DB_PASSWORD || config.get('mongo.password');
+const endpoint = process.env.DB_URL || config.get('mongo.endpoint');
+const dbName = process.env.DB_NAME || config.get('mongo.dbName');
 
-const url = process.env.DB_URL || config.get('arango.url');
-const dbName = process.env.DB_NAME || config.get('arango.dbName');
-const username = process.env.DB_USERNAME || config.get('arango.username');
-const password = process.env.DB_PASSWORD || config.get('arango.password');
+const uri = `${prefix}${username}${
+  username ? ':' : ''
+}${password}@${endpoint}/${dbName}`;
 
-console.log(
-  `Connecting to DB.\n\tenv=${process.env.NODE_ENV},\n\tURL: `,
-  url,
-  '\n\tdb: ',
-  dbName,
-  '\n\tusername: ',
-  username,
-);
+console.log('uri', uri);
 
-const db = new Database({
-  url,
-});
-db.useDatabase(dbName);
-db.useBasicAuth(username, password);
+let mongodb: MongoClient;
 
-console.log('Arango connection established');
+const connect = async () => {
+  mongodb = await MongoClient.connect(uri);
+  console.log('Mongo connection established');
+};
+
+const get = () => mongodb.db();
+
+const close = () => mongodb.close();
 
 export default {
-  db,
-  documents: createDocumentInstances(db),
+  connect,
+  get,
+  close,
 };
