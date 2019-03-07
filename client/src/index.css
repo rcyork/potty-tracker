@@ -9,11 +9,6 @@ body {
   background: grey;
 }
 
-button {
-  border: none;
-  outline: none;
-}
-
 button:hover {
   cursor: pointer;
 }
