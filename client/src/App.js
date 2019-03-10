@@ -8,7 +8,7 @@ import Log from './components/log/Log';
 // css
 import './App.css';
 
-const POTTY_OPTIONS = ['1', '2', '3', '?', '1+', '2+', '3+', '-'];
+const POTTY_OPTIONS = ['1', '2', '3', '?', '-', '1+', '2+'];
 
 class App extends React.Component {
   state = {
