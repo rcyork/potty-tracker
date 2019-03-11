@@ -10,7 +10,7 @@ import './Log.css';
 const Log = ({ letOuts, updateLogOption, deleteLogEntry }) => {
   if (!letOuts) return 'no let outs';
 
-  let logSortedByDays = letOuts.reduce((acc, item) => {
+  const logSortedByDays = letOuts.reduce((acc, item) => {
     const dateLabel = moment(item.date).format('MMMM Do, YYYY');
     const matchingIndex = acc.findIndex(accItem => accItem[0] === dateLabel);
     if (matchingIndex > -1) {
@@ -24,8 +24,6 @@ const Log = ({ letOuts, updateLogOption, deleteLogEntry }) => {
 
     return [...acc, [dateLabel, [item]]];
   }, []);
-
-  logSortedByDays = logSortedByDays.sort((a, b) => (a[0] > b[0] ? -1 : 1));
 
   return (
     <div className="logWrap">
