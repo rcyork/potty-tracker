@@ -9,6 +9,10 @@
   grid-template-columns: max-content max-content 1fr;
 }
 
+.fa-clock {
+  padding: 1rem;
+}
+
 .editTime,
 .cancelEditTime {
   padding: 0 1rem;
