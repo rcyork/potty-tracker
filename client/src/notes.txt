@@ -1,0 +1,12 @@
+views
+- landing/settings - where you add and delete dogs
+- main - where you see a snapshot of last let out and also record let outs
+- log - where you can view, edit, and delete, logs of let outs
+
+state needed
+- dog info: array of objects with names, color, and current number
+- log: array of objects representing let outs
+- landing page state:
+  - new dog object that gets updated on change of text input and radio buttons for color choice
+  - when 'add dog' is clicked the new dog object gets passed into the dogs array in state and creates a dog card.  the new dog object then gets emptied
+  - deleting a dog card deletes that entry in state

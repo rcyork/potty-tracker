@@ -1,0 +1,39 @@
+.configureContainer {
+  width: 500px;
+  margin: auto;
+  background: white;
+  height: 100vh;
+  padding: 2rem 1rem 1rem;
+  position: relative;
+}
+
+.dogNameInputLabel {
+  position: absolute;
+  top: 22px;
+  left: 30px;
+  padding: 0 0.5rem;
+  font-size: 1.25rem;
+  background: white;
+}
+
+#dogNameInput {
+  display: block;
+  padding: 1rem 0.75rem;
+  font-size: 1.75rem;
+  border-radius: 5px;
+  border: 2px solid black;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.colorSelection {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 0.5rem;
+}
+
+.colorSectionLabel {
+  display: block;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}

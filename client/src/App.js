@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 // components
 import Home from './components/home/Home';
 import Log from './components/log/Log';
+import { Configure } from './components/configure/Configure';
 
 // css
 import './App.css';
@@ -145,38 +146,39 @@ class App extends React.Component {
     );
 
     return (
-      <BrowserRouter>
-        <div className="app">
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={() => (
-                <Home
-                  letOuts={this.state.letOuts}
-                  state={this.state}
-                  updatePottyOption={this.updatePottyOption}
-                  addLetOut={this.addLetOut}
-                  insertDateTimeLocalInput={this.insertDateTimeLocalInput}
-                  isTimeRequired={this.state.isTimeRequired}
-                  handleCustomTime={this.handleCustomTime}
-                  cancelCustomTime={this.cancelCustomTime}
-                />
-              )}
-            />
-            <Route
-              path="/log"
-              render={() => (
-                <Log
-                  letOuts={sortedLetOuts}
-                  updateLogOption={this.updateLogOption}
-                  deleteLogEntry={this.deleteLogEntry}
-                />
-              )}
-            />
-          </Switch>
-        </div>
-      </BrowserRouter>
+      <Configure />
+      // <BrowserRouter>
+      //   <div className="app">
+      //     <Switch>
+      //       <Route
+      //         exact
+      //         path="/"
+      //         render={() => (
+      //           <Home
+      //             letOuts={this.state.letOuts}
+      //             state={this.state}
+      //             updatePottyOption={this.updatePottyOption}
+      //             addLetOut={this.addLetOut}
+      //             insertDateTimeLocalInput={this.insertDateTimeLocalInput}
+      //             isTimeRequired={this.state.isTimeRequired}
+      //             handleCustomTime={this.handleCustomTime}
+      //             cancelCustomTime={this.cancelCustomTime}
+      //           />
+      //         )}
+      //       />
+      //       <Route
+      //         path="/log"
+      //         render={() => (
+      //           <Log
+      //             letOuts={sortedLetOuts}
+      //             updateLogOption={this.updateLogOption}
+      //             deleteLogEntry={this.deleteLogEntry}
+      //           />
+      //         )}
+      //       />
+      //     </Switch>
+      //   </div>
+      // </BrowserRouter>
     );
   }
 }
