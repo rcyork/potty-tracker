@@ -1,0 +1,94 @@
+input,
+button {
+  outline: none;
+}
+
+.configureContainer {
+  width: 500px;
+  margin: auto;
+  background: white;
+  height: 100vh;
+  padding: 2rem 1rem 1rem;
+  position: relative;
+  display: grid;
+  grid-template-rows: max-content max-content 1fr;
+}
+
+.dogNameInputLabel {
+  position: absolute;
+  top: 22px;
+  left: 30px;
+  padding: 0 0.5rem;
+  font-size: 1.25rem;
+  background: white;
+}
+
+#dogNameInput {
+  display: block;
+  padding: 1rem 0.75rem;
+  font-size: 1.75rem;
+  border-radius: 5px;
+  border: 2px solid black;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+#dogNameInput.empty {
+  border-color: red;
+  margin-bottom: 0.5rem;
+}
+
+.noNameWarning {
+  color: red;
+  margin-bottom: 1.5rem;
+}
+
+.colorSelection {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 0.5rem;
+  margin-bottom: 3rem;
+}
+
+.colorSectionLabel {
+  display: block;
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+}
+
+.dogsListWrap {
+  display: grid;
+  grid-template-rows: 1fr max-content;
+  align-content: space-between;
+  overflow-y: scroll;
+}
+
+.scrollingList {
+  overflow: hidden;
+  overflow-y: scroll;
+  margin-bottom: 2rem;
+}
+
+.fa-plus,
+.fa-check {
+  margin-right: 1rem;
+}
+
+.addDogButton.disabled {
+  background: grey;
+}
+
+.addDogButton,
+.doneButton {
+  font-size: 1.5rem;
+  background: green;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  color: white;
+  margin: auto;
+  display: block;
+}
+
+.addDogButton {
+  margin-bottom: 3rem;
+}

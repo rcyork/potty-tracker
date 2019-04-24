@@ -1,0 +1,23 @@
+.namePlate {
+  font-size: 2rem;
+  padding: 0.15rem 0.15rem 0.15rem 1rem;
+  border-radius: 5px;
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: 1fr max-content;
+  color: white;
+}
+
+.deleteDogButton {
+  padding: 0.5rem 2rem;
+  border-radius: 0 5px 5px 0;
+}
+
+.red {
+  background: red;
+}
+
+.blue {
+  background: blue;
+}

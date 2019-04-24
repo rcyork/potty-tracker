@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 // components
 import Home from './components/home/Home';
 import Log from './components/log/Log';
-import { Configure } from './components/configure/Configure';
+import { Settings } from './components/Settings/Settings';
 
 // css
 import './App.css';
@@ -13,6 +13,8 @@ const POTTY_OPTIONS = ['1', '2', '3', '?', '-', '1+', '2+'];
 
 class App extends React.Component {
   state = {
+    newDog: { name: '', color: 'red' },
+    dogs: [],
     leoCurrent: '1',
     lucyCurrent: '1',
     currentCustomTime: '',
@@ -140,45 +142,91 @@ class App extends React.Component {
     this.setState({ isTimeRequired: false, currentCustomTime: '' });
   };
 
+  onColorChanged = newColor => {
+    this.setState(prevState => {
+      return { newDog: { ...prevState.newDog, color: newColor } };
+    });
+  };
+
+  onDogNameChange = text => {
+    this.setState(prevState => {
+      return { newDog: { ...prevState.newDog, name: text } };
+    });
+  };
+
+  onDogAdded = dogToAdd => {
+    this.setState(prevState => {
+      return {
+        dogs: [...prevState.dogs, dogToAdd],
+        newDog: { name: '', color: 'red' },
+      };
+    });
+  };
+
+  onDogDeleted = dogToDelete => {
+    this.setState(prevState => {
+      return { dogs: prevState.dogs.filter(dog => dog.name !== dogToDelete) };
+    });
+  };
+
   render() {
     const sortedLetOuts = (this.state.letOuts || []).sort((a, b) =>
       a.date > b.date ? -1 : 1,
     );
 
     return (
-      <Configure />
-      // <BrowserRouter>
-      //   <div className="app">
-      //     <Switch>
-      //       <Route
-      //         exact
-      //         path="/"
-      //         render={() => (
-      //           <Home
-      //             letOuts={this.state.letOuts}
-      //             state={this.state}
-      //             updatePottyOption={this.updatePottyOption}
-      //             addLetOut={this.addLetOut}
-      //             insertDateTimeLocalInput={this.insertDateTimeLocalInput}
-      //             isTimeRequired={this.state.isTimeRequired}
-      //             handleCustomTime={this.handleCustomTime}
-      //             cancelCustomTime={this.cancelCustomTime}
-      //           />
-      //         )}
-      //       />
-      //       <Route
-      //         path="/log"
-      //         render={() => (
-      //           <Log
-      //             letOuts={sortedLetOuts}
-      //             updateLogOption={this.updateLogOption}
-      //             deleteLogEntry={this.deleteLogEntry}
-      //           />
-      //         )}
-      //       />
-      //     </Switch>
-      //   </div>
-      // </BrowserRouter>
+      <BrowserRouter>
+        <div className="app">
+          <Switch>
+            <Route
+              exact
+              path="/settings"
+              render={() => (
+                <Settings
+                  newDog={this.state.newDog}
+                  dogs={this.state.dogs}
+                  onDogNameChange={this.onDogNameChange}
+                  onColorChanged={this.onColorChanged}
+                  onDogAdded={this.onDogAdded}
+                  onDogDeleted={this.onDogDeleted}
+                />
+              )}
+            />
+            <Route
+              exact
+              path="/"
+              render={() => {
+                if (!this.state.dogs || this.state.dogs.length === 0) {
+                  return <Redirect to="/settings" />;
+                }
+
+                return (
+                  <Home
+                    letOuts={this.state.letOuts}
+                    state={this.state}
+                    updatePottyOption={this.updatePottyOption}
+                    addLetOut={this.addLetOut}
+                    insertDateTimeLocalInput={this.insertDateTimeLocalInput}
+                    isTimeRequired={this.state.isTimeRequired}
+                    handleCustomTime={this.handleCustomTime}
+                    cancelCustomTime={this.cancelCustomTime}
+                  />
+                );
+              }}
+            />
+            <Route
+              path="/log"
+              render={() => (
+                <Log
+                  letOuts={sortedLetOuts}
+                  updateLogOption={this.updateLogOption}
+                  deleteLogEntry={this.deleteLogEntry}
+                />
+              )}
+            />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
