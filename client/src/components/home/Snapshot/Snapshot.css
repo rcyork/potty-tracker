@@ -1,0 +1,27 @@
+.snapshot {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  align-items: center;
+  padding: 0.25rem 0.25rem 0.25rem 0;
+  background: white;
+}
+
+.snapshot__time {
+  font-size: 2rem;
+  font-weight: 200;
+  color: grey;
+  padding: 0 1rem 0 0.5rem;
+}
+
+.snapshot__pottyNumbers {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.snapshot__pottyNumbers__pottyNumber {
+  font-size: 2rem;
+  padding: 1rem;
+  display: inline-block;
+  font-weight: 200;
+  text-align: center;
+}

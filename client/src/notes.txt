@@ -10,3 +10,8 @@ state needed
   - new dog object that gets updated on change of text input and radio buttons for color choice
   - when 'add dog' is clicked the new dog object gets passed into the dogs array in state and creates a dog card.  the new dog object then gets emptied
   - deleting a dog card deletes that entry in state
+
+
+questions: 
+  - why can't I get the pottyNumberSelectButtons to have the number in the middle and the name bottom left
+  - how are my potty buttons going beyond the bounds of their container?

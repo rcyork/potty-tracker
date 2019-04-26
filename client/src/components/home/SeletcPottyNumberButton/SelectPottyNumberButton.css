@@ -1,0 +1,24 @@
+.selectPottyNumber {
+  padding: 1rem;
+  color: white;
+  font-size: 5rem;
+  font-weight: 200;
+  flex: 1;
+  min-width: 35%;
+  position: relative;
+}
+
+.twoOrLess .selectPottyNumber {
+  min-width: 51%; /* ensures items will stack vertically if there is two or less */
+}
+
+.moreThanFive .selectPottyNumber {
+  min-width: 33%; /* ensures items can make three columns if there is five or more */
+}
+
+.selectPottyNumber__name {
+  font-size: 1.5rem;
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}
