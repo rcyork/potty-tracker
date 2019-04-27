@@ -15,54 +15,67 @@ export const Settings = ({
   onColorChanged,
   onDogAdded,
   onDogDeleted,
-}) => (
-  <div className="configureContainer">
-    <div className="dogNameInputWrap">
-      <label htmlFor="dogNameInput" className="dogNameInputLabel">
-        dog name
-      </label>
-      <input
-        type="text"
-        id="dogNameInput"
-        value={newDog.name}
-        onChange={event => onDogNameChange(event.target.value)}
-        className={`${!newDog.name || newDog.name === '' ? 'empty' : null}`}
-      />
-      {!newDog.name || newDog.name === '' ? (
-        <p class="noNameWarning">Your dog needs a name!</p>
-      ) : null}
-    </div>
-    <div className="colorSectionWrap">
-      <label className="colorSectionLabel">color</label>
-      <ul className="colorSelection">
-        {COLOR_OPTIONS.map(color => {
-          return (
-            <ColorOption
-              key={color}
-              color={color}
-              currentColor={newDog.color}
-              onColorChanged={onColorChanged}
-            />
-          );
-        })}
-      </ul>
-      <button
-        disabled={!newDog.name || newDog.name === ''}
-        className={`addDogButton ${
-          !newDog.name || newDog.name === '' ? 'disabled' : null
-        }`}
-        onClick={() => onDogAdded({ name: newDog.name, color: newDog.color })}
-      >
-        <i className="fas fa-plus" /> add dog
-      </button>
-    </div>
-    <div className="dogsListWrap">
-      <div className="scrollingList">
-        <DogsList dogs={dogs} onDogDeleted={onDogDeleted} />
+}) => {
+  const duplicateDogNames = dogs.find(dog => dog.name === newDog.name);
+  const tooManyDogs = dogs.length >= 9;
+  const emptyNameInputField = !newDog.name || newDog.name === '';
+  return (
+    <div className="configureContainer">
+      <div className="dogNameInputWrap">
+        <label htmlFor="dogNameInput" className="dogNameInputLabel">
+          dog name
+        </label>
+        <input
+          type="text"
+          id="dogNameInput"
+          value={newDog.name}
+          onChange={event => onDogNameChange(event.target.value)}
+          className={`${
+            duplicateDogNames || tooManyDogs || emptyNameInputField
+              ? 'inputWarning'
+              : null
+          }`}
+        />
+        {duplicateDogNames ? (
+          <p className="inputWarningText">Your dogs must have unique names</p>
+        ) : tooManyDogs ? (
+          <p class="inputWarningText">
+            You have the maxium amount of dogs allowed
+          </p>
+        ) : emptyNameInputField ? (
+          <p class="inputWarningText">Your dog needs a name!</p>
+        ) : null}
       </div>
-      <Link className="doneButton" to="/">
-        <i className="fas fa-check" /> done
-      </Link>
+      <div className="colorSectionWrap">
+        <label className="colorSectionLabel">color</label>
+        <ul className="colorSelection">
+          {COLOR_OPTIONS.map(color => {
+            return (
+              <ColorOption
+                key={color}
+                color={color}
+                currentColor={newDog.color}
+                onColorChanged={onColorChanged}
+              />
+            );
+          })}
+        </ul>
+        <button
+          disabled={duplicateDogNames || tooManyDogs || emptyNameInputField}
+          className={`addDogButton`}
+          onClick={() => onDogAdded({ name: newDog.name, color: newDog.color })}
+        >
+          <i className="fas fa-plus" /> add dog
+        </button>
+      </div>
+      <div className="dogsListWrap">
+        <div className="scrollingList">
+          <DogsList dogs={dogs} onDogDeleted={onDogDeleted} />
+        </div>
+        <Link className="doneButton" to="/">
+          <i className="fas fa-check" /> done
+        </Link>
+      </div>
     </div>
-  </div>
-);
+  );
+};

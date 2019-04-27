@@ -33,12 +33,12 @@ button {
   margin-bottom: 3rem;
 }
 
-#dogNameInput.empty {
+#dogNameInput.inputWarning {
   border-color: red;
   margin-bottom: 0.5rem;
 }
 
-.noNameWarning {
+.inputWarningText {
   color: red;
   margin-bottom: 1.5rem;
 }

@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 // components
 import { Home } from './components/Home/Home';
-import Log from './components/Log/Log';
+import { Log } from './components/Log/Log';
 import { Settings } from './components/Settings/Settings';
 
 // css
@@ -15,15 +15,15 @@ class App extends React.Component {
   state = {
     newDog: { name: '', color: 'red' },
     dogs: [
-      { name: 'leo', color: 'blue', currentNumber: 1 },
-      { name: 'lucy', color: 'pink', currentNumber: 1 },
+      { name: 'leo', color: 'blue', currentNumber: '1' },
+      { name: 'lucy', color: 'pink', currentNumber: '1' },
     ],
     log: [
       {
         date: new Date(),
         pottyNumbers: [
-          { name: 'leo', pottyNumber: 1 },
-          { name: 'lucy', pottyNumber: 3 },
+          { name: 'leo', pottyNumber: '1' },
+          { name: 'lucy', pottyNumber: '3' },
         ],
       },
     ],
@@ -38,11 +38,24 @@ class App extends React.Component {
   //     .catch(error => console.log(error));
   // }
 
-  // updatePottyOption = dogName => {
-  //   this.setState(state => ({
-  //     [dogName]: this.getNextPottyOption(state[dogName]),
-  //   }));
-  // };
+  updatePottyOption = (name, number) => {
+    this.setState(prevState => {
+      return {
+        dogs: prevState.dogs.map(dog => {
+          if (dog.name !== name) {
+            return { ...dog };
+          }
+          return { ...dog, currentNumber: this.getNextPottyOption(number) };
+        }),
+      };
+    });
+  };
+
+  addLetOut = pottyNumbers => {
+    this.setState(prevState => {
+      return { log: [{ date: new Date(), pottyNumbers }, ...prevState.log] };
+    });
+  };
 
   // deleteLogEntry = itemId => {
   //   fetch(`/api/let-outs/${itemId}`, {
@@ -121,33 +134,19 @@ class App extends React.Component {
   //     .catch(error => console.log(error));
   // };
 
-  // getNextPottyOption = currentNumber => {
-  //   const currentIndex = POTTY_OPTIONS.findIndex(
-  //     entry => entry === currentNumber,
-  //   );
+  getNextPottyOption = currentNumber => {
+    const currentIndex = POTTY_OPTIONS.findIndex(
+      entry => entry === currentNumber,
+    );
 
-  //   if (currentIndex === POTTY_OPTIONS.length - 1) {
-  //     currentNumber = POTTY_OPTIONS[0];
-  //   } else {
-  //     currentNumber = POTTY_OPTIONS[currentIndex + 1];
-  //   }
+    if (currentIndex === POTTY_OPTIONS.length - 1) {
+      currentNumber = POTTY_OPTIONS[0];
+    } else {
+      currentNumber = POTTY_OPTIONS[currentIndex + 1];
+    }
 
-  //   return currentNumber;
-  // };
-
-  // insertDateTimeLocalInput = () => {
-  //   this.setState({ isTimeRequired: true });
-  // };
-
-  // handleCustomTime = customTime => {
-  //   this.setState({
-  //     currentCustomTime: customTime,
-  //   });
-  // };
-
-  // cancelCustomTime = () => {
-  //   this.setState({ isTimeRequired: false, currentCustomTime: '' });
-  // };
+    return currentNumber;
+  };
 
   onColorChanged = newColor => {
     this.setState(prevState => {
@@ -177,15 +176,11 @@ class App extends React.Component {
   };
 
   render() {
-    const sortedLetOuts = (this.state.letOuts || []).sort((a, b) =>
-      a.date > b.date ? -1 : 1,
-    );
-
     return (
       <BrowserRouter>
         <div className="app">
           <Switch>
-            {/* <Route
+            <Route
               exact
               path="/settings"
               render={() => (
@@ -198,33 +193,26 @@ class App extends React.Component {
                   onDogDeleted={this.onDogDeleted}
                 />
               )}
-            /> */}
+            />
             <Route
               exact
               path="/"
               render={() => {
-                // if (!this.state.dogs || this.state.dogs.length === 0) {
-                //   return <Redirect to="/settings" />;
-                // }
+                if (!this.state.dogs || this.state.dogs.length === 0) {
+                  return <Redirect to="/settings" />;
+                }
 
                 return (
                   <Home
                     mostRecentLetOut={this.state.log[0]}
                     dogs={this.state.dogs}
+                    updatePottyOption={this.updatePottyOption}
+                    addLetOut={this.addLetOut}
                   />
                 );
               }}
             />
-            {/* <Route
-              path="/log"
-              render={() => (
-                <Log
-                  letOuts={sortedLetOuts}
-                  updateLogOption={this.updateLogOption}
-                  deleteLogEntry={this.deleteLogEntry}
-                />
-              )}
-            /> */}
+            <Route path="/log" render={() => <Log log={this.state.log} />} />
           </Switch>
         </div>
       </BrowserRouter>

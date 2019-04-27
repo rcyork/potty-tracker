@@ -1,34 +1,16 @@
-.logWrap {
-  display: grid;
-  grid-template-rows: max-content 1fr;
-  overflow: hidden;
-  height: 100vh;
+.log {
+  padding: 1rem;
 }
 
-.cancel {
-  display: grid;
-  align-content: center;
-  justify-content: center;
-
-  width: 100%;
-  height: 5rem;
-
-  background: var(--grey_dark);
-  color: var(--white);
-
-  font-size: 2.5rem;
-  font-weight: 200;
+.goHomeButton {
+  background: blue;
+  padding: 0.75rem 1.5rem;
+  color: white;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  box-shadow: 4px 4px 4px grey;
 }
 
-.scrollingLog {
-  overflow: hidden;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  background: var(--black_light);
-}
-
-.logCardsGridGap {
-  display: grid;
-  grid-auto-rows: auto;
-  grid-gap: 1rem;
+.fa-home {
+  margin-right: 0.75rem;
 }

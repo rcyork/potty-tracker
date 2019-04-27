@@ -5,14 +5,18 @@ import './Snapshot.css';
 
 export const Snapshot = ({ mostRecentLetOut, dogs }) => {
   return (
-    <div className="snapshot">
+    <div className={`snapshot ${dogs.length >= 5 ? 'fiveOrMore' : null}`}>
       <span className="snapshot__time">
         {moment(mostRecentLetOut.date).format('LT')}
       </span>
       <ul className="snapshot__pottyNumbers">
         {mostRecentLetOut.pottyNumbers.map(dog => {
+          const dogIsPresent = dogs.find(pupper => pupper.name === dog.name);
+          if (!dogIsPresent) {
+            return null;
+          }
           const color = dogs.find(pupper => pupper.name === dog.name).color;
-          return (
+          return dogIsPresent ? (
             <li
               key={dog.name}
               className={`snapshot__pottyNumbers__pottyNumber ${
@@ -21,7 +25,7 @@ export const Snapshot = ({ mostRecentLetOut, dogs }) => {
             >
               {dog.pottyNumber}
             </li>
-          );
+          ) : null;
         })}
       </ul>
     </div>

@@ -5,7 +5,12 @@ import { SelectPottyNumberButton } from './SeletcPottyNumberButton/SelectPottyNu
 
 import './Home.css';
 
-export const Home = ({ mostRecentLetOut, dogs }) => (
+export const Home = ({
+  mostRecentLetOut,
+  dogs,
+  updatePottyOption,
+  addLetOut,
+}) => (
   <div className="home">
     <div className="navAndInfoBar">
       <Link to="/settings">
@@ -20,7 +25,12 @@ export const Home = ({ mostRecentLetOut, dogs }) => (
         } ${dogs.length <= 2 ? 'twoOrLess' : null}`}
       >
         {dogs.map(dog => {
-          return <SelectPottyNumberButton dog={dog} />;
+          return (
+            <SelectPottyNumberButton
+              dog={dog}
+              updatePottyOption={updatePottyOption}
+            />
+          );
         })}
       </div>
     </div>
@@ -28,7 +38,19 @@ export const Home = ({ mostRecentLetOut, dogs }) => (
       <Link to="/log" className="logLink">
         <i className="fas fa-clipboard-list fa-4x" />
       </Link>
-      <button className="save">save</button>
+      <button
+        className="save"
+        onClick={() =>
+          addLetOut(
+            dogs.map(dog => ({
+              name: dog.name,
+              pottyNumber: dog.currentNumber,
+            })),
+          )
+        }
+      >
+        save
+      </button>
     </div>
   </div>
 );

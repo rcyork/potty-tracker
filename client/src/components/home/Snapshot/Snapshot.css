@@ -6,6 +6,14 @@
   background: white;
 }
 
+.fiveOrMore .snapshot__time {
+  font-size: 1.5rem; /* ensures potty snapshot doesn't expand beyond it's container when a large number of dogs are present*/
+}
+
+.fiveOrMore .snapshot__pottyNumbers__pottyNumber {
+  padding: 1rem 0.5rem; /* ensures potty snapshot doesn't expand beyond it's container when a large number of dogs are present*/
+}
+
 .snapshot__time {
   font-size: 2rem;
   font-weight: 200;
