@@ -17,6 +17,9 @@ class App extends React.Component {
     dogs: [
       { name: 'leo', color: 'blue', currentNumber: '1' },
       { name: 'lucy', color: 'pink', currentNumber: '1' },
+      { name: 'leo', color: 'blue', currentNumber: '1' },
+      { name: 'lucy', color: 'pink', currentNumber: '1' },
+      { name: 'leo', color: 'blue', currentNumber: '1' },
     ],
     log: [
       {
@@ -24,6 +27,19 @@ class App extends React.Component {
         pottyNumbers: [
           { name: 'leo', pottyNumber: '1' },
           { name: 'lucy', pottyNumber: '3' },
+          { name: 'leo', pottyNumber: '1' },
+          { name: 'lucy', pottyNumber: '3' },
+          { name: 'leo', pottyNumber: '1' },
+        ],
+      },
+      {
+        date: 1556111166721,
+        pottyNumbers: [
+          { name: 'leo', pottyNumber: '1' },
+          { name: 'lucy', pottyNumber: '3' },
+          { name: 'leo', pottyNumber: '1' },
+          { name: 'lucy', pottyNumber: '3' },
+          { name: 'leo', pottyNumber: '1' },
         ],
       },
     ],
@@ -212,7 +228,10 @@ class App extends React.Component {
                 );
               }}
             />
-            <Route path="/log" render={() => <Log log={this.state.log} />} />
+            <Route
+              path="/log"
+              render={() => <Log log={this.state.log} dogs={this.state.dogs} />}
+            />
           </Switch>
         </div>
       </BrowserRouter>

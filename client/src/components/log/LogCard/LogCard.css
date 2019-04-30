@@ -1,0 +1,64 @@
+.logCard {
+  border: 1px solid black;
+  border-radius: 5px;
+  font-weight: 200;
+  display: grid;
+  grid-template-columns: max-content 1fr max-content;
+  align-items: center;
+}
+
+.logCard__time {
+  font-size: 0.75rem;
+  padding: 0.5rem 0.25rem;
+}
+
+.logCard__pottyNumbers {
+  display: grid;
+  grid-auto-flow: column;
+  height: 100%;
+  align-items: center;
+}
+
+.logCard__pottyNumber {
+  display: grid;
+  align-content: center;
+  text-align: center;
+  height: 100%;
+  padding: 0 0.25rem;
+  color: white;
+  font-size: 1rem;
+}
+
+.fa-times {
+  padding: 0 0.25rem;
+}
+
+@media all and (min-width: 425px) {
+  .logCard__time {
+    font-size: 1.25rem;
+    padding: 0.5rem 0.5rem;
+  }
+
+  .logCard__pottyNumber {
+    font-size: 1.25rem;
+    padding: 0 0.5rem;
+  }
+
+  .fa-times {
+    font-size: 2rem;
+    padding: 0 0.5rem;
+  }
+
+  .fiveOrLess .logCard__time {
+    font-size: 2rem;
+    padding: 0.5rem 1.5rem;
+  }
+
+  .fiveOrLess .logCard__pottyNumber {
+    font-size: 2rem;
+  }
+
+  .fiveOrLess .fa-times {
+    padding: 0 1rem;
+  }
+}
