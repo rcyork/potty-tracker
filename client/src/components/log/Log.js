@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import { LogCard } from './LogCard/LogCard';
 
 import moment from 'moment';
@@ -27,10 +29,10 @@ export const Log = ({ log, dogs }) => {
   return (
     <div className="log">
       <div>
-        <button className="goHomeButton">
+        <Link to="/" className="goHomeButton">
           <i className="fas fa-home" />
           home
-        </button>
+        </Link>
       </div>
       <div className="scrollingLog">
         {logSortedByDays.map(([day, letOuts]) => {

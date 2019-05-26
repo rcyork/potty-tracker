@@ -4,10 +4,12 @@
   align-items: center;
   padding: 0.25rem 0.25rem 0.25rem 0;
   background: white;
+  border-left: 2px solid black;
 }
 
 .fiveOrMore .snapshot__time {
-  font-size: 1.5rem; /* ensures potty snapshot doesn't expand beyond it's container when a large number of dogs are present*/
+  font-size: 1rem; /* ensures potty snapshot doesn't expand beyond it's container when a large number of dogs are present*/
+  color: black;
 }
 
 .fiveOrMore .snapshot__pottyNumbers__pottyNumber {
