@@ -3,10 +3,48 @@
   --grey_light: #c4c4c4;
   --grey: #828181;
   --grey_dark: #605f5f;
-  --black_light: #292828;
-  --red_light: #fbb5b1;
+  --black: #292828;
+  --orange: #ff7c4b;
+  --pink: #fbb5b1;
   --red: #fb635b;
   --blue_light: #9ac7f9;
   --blue: #439bfb;
+  --purple: #9560ba;
+  --yellow: #fff564;
   --green: #70cc80;
+}
+
+.red {
+  background: var(--red);
+}
+
+.blue {
+  background: var(--blue);
+}
+
+.orange {
+  background: var(--orange);
+}
+.green {
+  background: var(--green);
+}
+
+.purple {
+  background: var(--purple);
+}
+
+.pink {
+  background: var(--pink);
+}
+
+.yellow {
+  background: var(--yellow);
+}
+
+.black {
+  background: var(--black);
+}
+
+.grey {
+  background: var(--grey);
 }

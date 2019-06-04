@@ -5,10 +5,9 @@
   "main": "src/server.js",
   "scripts": {
     "client-dev": "cd client && npm run start",
-    "build": "tsc && cd client && npm run build && cp -r build/ ../dist/public",
-    "server-dev": "npm run watch-ts & npm run watch-node",
-    "watch-ts": "tsc -w",
-    "watch-node": "NODE_ENV=test nodemon --inspect dist/server.js --delay 100ms",
+    "build": "cp -r src dist && cd client && npm run build && cp -r build/ ../dist/public",
+    "server-dev": "npm run watch-node",
+    "watch-node": "NODE_ENV=test nodemon --delay 100ms --ignore db.json --exec \"rm -f db.json && node src/server.js\"",
     "dev": "concurrently npm:server-dev npm:client-dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -39,6 +38,7 @@
     "body-parser": "^1.18.3",
     "config": "^3.0.1",
     "express": "^4.16.4",
+    "lowdb": "^1.0.0",
     "mongodb": "^3.1.13"
   },
   "devDependencies": {

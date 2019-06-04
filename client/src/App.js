@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 // components
 import { Home } from './components/Home/Home';
@@ -16,154 +16,26 @@ class App extends React.Component {
     newDog: { name: '', color: 'red' },
     dogs: [
       { name: 'leo', color: 'blue', currentNumber: '1' },
-      { name: 'lucy', color: 'pink', currentNumber: '1' },
-      { name: 'leo', color: 'blue', currentNumber: '1' },
-      { name: 'lucy', color: 'pink', currentNumber: '1' },
-      { name: 'leo', color: 'blue', currentNumber: '1' },
+      { name: 'lucy', color: 'red', currentNumber: '1' },
     ],
-    log: [
-      {
-        date: new Date(),
-        pottyNumbers: [
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-        ],
-      },
-
-      {
-        date: 1556111166721,
-        pottyNumbers: [
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-        ],
-      },
-      {
-        date: 1556111166721,
-        pottyNumbers: [
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-        ],
-      },
-      {
-        date: 1556111166721,
-        pottyNumbers: [
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-        ],
-      },
-      {
-        date: 1556111166721,
-        pottyNumbers: [
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-        ],
-      },
-      {
-        date: 1556111166721,
-        pottyNumbers: [
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-        ],
-      },
-      {
-        date: 1556111166721,
-        pottyNumbers: [
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-        ],
-      },
-      {
-        date: 1556111166721,
-        pottyNumbers: [
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-        ],
-      },
-      {
-        date: 1556111166721,
-        pottyNumbers: [
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-        ],
-      },
-      {
-        date: 1556111166721,
-        pottyNumbers: [
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-        ],
-      },
-      {
-        date: 1556111166721,
-        pottyNumbers: [
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-        ],
-      },
-      {
-        date: 1556111166721,
-        pottyNumbers: [
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-        ],
-      },
-      {
-        date: 1556111166721,
-        pottyNumbers: [
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-          { name: 'lucy', pottyNumber: '3' },
-          { name: 'leo', pottyNumber: '1' },
-        ],
-      },
-    ],
+    logs: [],
   };
 
-  // componentDidMount() {
-  //   fetch('/api/let-outs')
-  //     .then(res => res.json())
-  //     .then(letOuts => {
-  //       this.setState({ letOuts });
-  //     })
-  //     .catch(error => console.log(error));
-  // }
+  componentDidMount() {
+    const {
+      match: {
+        params: { roomKey },
+      },
+    } = this.props;
+
+    fetch(`/api/${roomKey}/logs`)
+      .then(res => res.json())
+
+      .then(logs => {
+        this.setState({ logs: logs });
+      })
+      .catch(error => console.log(error));
+  }
 
   updatePottyOption = (name, number) => {
     this.setState(prevState => {
@@ -180,53 +52,63 @@ class App extends React.Component {
 
   addLetOut = pottyNumbers => {
     this.setState(prevState => {
-      return { log: [{ date: new Date(), pottyNumbers }, ...prevState.log] };
+      return {
+        log: [{ date: new Date().toISOString, pottyNumbers }, ...prevState.log],
+      };
     });
   };
 
-  // deleteLogEntry = itemId => {
-  //   fetch(`/api/let-outs/${itemId}`, {
-  //     method: 'DELETE',
-  //   })
-  //     .then(res => res.json())
-  //     .then(
-  //       this.setState(prevState => ({
-  //         letOuts: prevState.letOuts.filter(entry => entry._id !== itemId),
-  //       })),
-  //     )
-  //     .catch(error => console.log(error));
-  // };
+  deleteLogEntry = (roomKey, date) => {
+    fetch(`/api/${roomKey}/logs/${date}`, {
+      method: 'DELETE',
+    })
+      .then(res => res.json())
+      .then(
+        this.setState(prevState => ({
+          logs: prevState.logs.filter(entry => entry.date !== date),
+        })),
+      )
+      .catch(error => console.log(error));
+  };
 
-  // updateLogOption = (itemId, dogName, currentNumber) => {
-  //   const newNumber = this.getNextPottyOption(currentNumber);
-  //   fetch(`/api/let-outs/${itemId}`, {
-  //     method: 'PATCH',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       [dogName]: newNumber,
-  //     }),
-  //   })
-  //     .then(res => res.json())
-  //     .then(letOut => {
-  //       this.setState(prevState => {
-  //         return {
-  //           letOuts: prevState.letOuts.map(entry => {
-  //             if (entry._id !== itemId) {
-  //               return entry;
-  //             } else {
-  //               return {
-  //                 ...entry,
-  //                 [dogName]: letOut[dogName],
-  //               };
-  //             }
-  //           }),
-  //         };
-  //       });
-  //     })
-  //     .catch(error => console.log(error));
-  // };
+  updateLogOption = (date, dogName, currentNumber, roomKey, currentLog) => {
+    const newNumber = this.getNextPottyOption(currentNumber);
+    fetch(`/api/${roomKey}/logs/${date}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        pottyNumbers: currentLog.pottyNumbers.map(item => {
+          if (item.name !== dogName) {
+            return item;
+          }
+          return {
+            ...item,
+            pottyNumber: newNumber,
+          };
+        }),
+      }),
+    })
+      .then(res => res.json())
+      .then(log => {
+        this.setState(prevState => {
+          return {
+            logs: prevState.logs.map(entry => {
+              if (entry.date !== log.date) {
+                return entry;
+              } else {
+                return {
+                  ...entry,
+                  pottyNumbers: log.pottyNumbers,
+                };
+              }
+            }),
+          };
+        });
+      })
+      .catch(error => console.log(error));
+  };
 
   // addLetOut = () => {
   //   const { currentCustomTime } = this.state;
@@ -303,49 +185,59 @@ class App extends React.Component {
   };
 
   render() {
-    return (
-      <BrowserRouter>
-        <div className="app">
-          <Switch>
-            <Route
-              exact
-              path="/settings"
-              render={() => (
-                <Settings
-                  newDog={this.state.newDog}
-                  dogs={this.state.dogs}
-                  onDogNameChange={this.onDogNameChange}
-                  onColorChanged={this.onColorChanged}
-                  onDogAdded={this.onDogAdded}
-                  onDogDeleted={this.onDogDeleted}
-                />
-              )}
-            />
-            <Route
-              exact
-              path="/"
-              render={() => {
-                if (!this.state.dogs || this.state.dogs.length === 0) {
-                  return <Redirect to="/settings" />;
-                }
+    const {
+      match: {
+        params: { roomKey },
+      },
+    } = this.props;
 
-                return (
-                  <Home
-                    mostRecentLetOut={this.state.log[0]}
-                    dogs={this.state.dogs}
-                    updatePottyOption={this.updatePottyOption}
-                    addLetOut={this.addLetOut}
-                  />
-                );
-              }}
+    return (
+      <div className="app">
+        <Route
+          exact
+          path="/:roomKey/settings"
+          render={() => (
+            <Settings
+              newDog={this.state.newDog}
+              dogs={this.state.dogs}
+              onDogNameChange={this.onDogNameChange}
+              onColorChanged={this.onColorChanged}
+              onDogAdded={this.onDogAdded}
+              onDogDeleted={this.onDogDeleted}
             />
-            <Route
-              path="/log"
-              render={() => <Log log={this.state.log} dogs={this.state.dogs} />}
+          )}
+        />
+        <Route
+          exact
+          path="/:roomKey"
+          render={() => {
+            if (!this.state.dogs || this.state.dogs.length === 0) {
+              return <Redirect to="/:roomKey/settings" />;
+            }
+
+            return (
+              <Home
+                mostRecentLetOut={this.state.log[0]}
+                dogs={this.state.dogs}
+                updatePottyOption={this.updatePottyOption}
+                addLetOut={this.addLetOut}
+              />
+            );
+          }}
+        />
+        <Route
+          path="/:roomKey/log"
+          render={() => (
+            <Log
+              logs={this.state.logs}
+              updateLogOption={this.updateLogOption}
+              dogs={this.state.dogs}
+              deleteLogEntry={this.deleteLogEntry}
+              roomKey={roomKey}
             />
-          </Switch>
-        </div>
-      </BrowserRouter>
+          )}
+        />
+      </div>
     );
   }
 }

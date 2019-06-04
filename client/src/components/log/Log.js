@@ -8,8 +8,27 @@ import moment from 'moment';
 
 import './Log.css';
 
-export const Log = ({ log, dogs }) => {
-  const logSortedByDays = log.reduce((acc, letOut) => {
+export const Log = ({
+  logs,
+  dogs,
+  deleteLogEntry,
+  roomKey,
+  updateLogOption,
+}) => {
+  if (!logs || logs.length === 0) {
+    return (
+      <div className="log">
+        <div>
+          <Link to="/" className="goHomeButton">
+            <i className="fas fa-home" />
+            home
+          </Link>
+        </div>{' '}
+        <p className="emptyLogMessage">you have no let outs</p>{' '}
+      </div>
+    );
+  }
+  const logsSortedByDays = logs.reduce((acc, letOut) => {
     const dateLabel = moment(letOut.date).format('MMMM Do, YYYY');
     const matchingIndex = acc.findIndex(day => day[0] === dateLabel);
     if (matchingIndex > -1) {
@@ -29,20 +48,28 @@ export const Log = ({ log, dogs }) => {
   return (
     <div className="log">
       <div>
-        <Link to="/" className="goHomeButton">
+        <Link to="/:roomKey" className="goHomeButton">
           <i className="fas fa-home" />
           home
         </Link>
       </div>
+
       <div className="scrollingLog">
-        {logSortedByDays.map(([day, letOuts]) => {
+        {logsSortedByDays.map(([day, letOuts]) => {
           return (
             <div className="dayOfLetOuts" key={day}>
               <div className="dateLabel">{day}</div>
               <div className="letOuts">
                 {letOuts.map(letOut => {
                   return (
-                    <LogCard letOut={letOut} dogs={dogs} key={letOut.date} />
+                    <LogCard
+                      updateLogOption={updateLogOption}
+                      letOut={letOut}
+                      dogs={dogs}
+                      key={letOut.date}
+                      deleteLogEntry={deleteLogEntry}
+                      roomKey={roomKey}
+                    />
                   );
                 })}
               </div>

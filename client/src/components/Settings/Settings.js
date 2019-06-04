@@ -6,7 +6,17 @@ import { ColorOption } from './ColorOption/ColorOption';
 import { DogsList } from './DogsList/DogsList';
 import './Settings.css';
 
-const COLOR_OPTIONS = ['red', 'blue', 'orange', 'green', 'purple', 'pink'];
+const COLOR_OPTIONS = [
+  'red',
+  'blue',
+  'orange',
+  'green',
+  'purple',
+  'pink',
+  'yellow',
+  'black',
+  'grey',
+];
 
 export const Settings = ({
   newDog,
@@ -39,11 +49,11 @@ export const Settings = ({
         {duplicateDogNames ? (
           <p className="inputWarningText">Your dogs must have unique names</p>
         ) : tooManyDogs ? (
-          <p class="inputWarningText">
+          <p className="inputWarningText">
             You have the maxium amount of dogs allowed
           </p>
         ) : emptyNameInputField ? (
-          <p class="inputWarningText">Your dog needs a name!</p>
+          <p className="inputWarningText">Your dog needs a name!</p>
         ) : null}
       </div>
       <div className="colorSectionWrap">

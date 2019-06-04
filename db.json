@@ -1,0 +1,29 @@
+{
+  "york": {
+    "dogs": [
+      {
+        "name": "leo",
+        "color": "#333"
+      },
+      {
+        "name": "lucy",
+        "color": "#fff"
+      }
+    ],
+    "logs": [
+      {
+        "date": "2019-06-04T02:53:37.628Z",
+        "pottyNumbers": [
+          {
+            "name": "leo",
+            "pottyNumber": "1"
+          },
+          {
+            "name": "lucy",
+            "pottyNumber": "1"
+          }
+        ]
+      }
+    ]
+  }
+}

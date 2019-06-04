@@ -44,7 +44,7 @@
 }
 
 .save {
-  background: green;
+  background: var(--green);
   padding: 2rem 1rem;
   font-size: 3rem;
   color: white;

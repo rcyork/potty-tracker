@@ -27,6 +27,7 @@ export const Home = ({
         {dogs.map(dog => {
           return (
             <SelectPottyNumberButton
+              key={dog.name}
               dog={dog}
               updatePottyOption={updatePottyOption}
             />

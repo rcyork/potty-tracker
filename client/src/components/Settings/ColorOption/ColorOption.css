@@ -3,8 +3,8 @@ input[type='radio'] {
 }
 
 .colorLabel {
-  width: 3rem;
-  height: 3rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   display: inline-block;
 }
@@ -12,23 +12,4 @@ input[type='radio'] {
 .highlighted {
   border: 3px solid #fff;
   box-shadow: 0 0 0px 2px #000;
-}
-
-.red {
-  background: red;
-}
-.blue {
-  background: blue;
-}
-.green {
-  background: green;
-}
-.purple {
-  background: purple;
-}
-.orange {
-  background: orange;
-}
-.pink {
-  background: pink;
 }
