@@ -23,6 +23,19 @@
             "pottyNumber": "1"
           }
         ]
+      },
+      {
+        "date": "2019-06-04T02:54:37.628Z",
+        "pottyNumbers": [
+          {
+            "name": "leo",
+            "pottyNumber": "3"
+          },
+          {
+            "name": "lucy",
+            "pottyNumber": "3"
+          }
+        ]
       }
     ]
   }

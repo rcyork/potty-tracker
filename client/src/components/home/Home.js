@@ -13,7 +13,7 @@ export const Home = ({
 }) => (
   <div className="home">
     <div className="navAndInfoBar">
-      <Link to="/settings">
+      <Link to="/settings" className="settingsIcon">
         <i className="fas fa-cog fa-2x" />
       </Link>
       <Snapshot mostRecentLetOut={mostRecentLetOut} dogs={dogs} />

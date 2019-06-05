@@ -30,9 +30,8 @@ class App extends React.Component {
 
     fetch(`/api/${roomKey}/logs`)
       .then(res => res.json())
-
       .then(logs => {
-        this.setState({ logs: logs });
+        this.setState({ logs });
       })
       .catch(error => console.log(error));
   }
@@ -217,7 +216,7 @@ class App extends React.Component {
 
             return (
               <Home
-                mostRecentLetOut={this.state.log[0]}
+                mostRecentLetOut={this.state.logs[0]}
                 dogs={this.state.dogs}
                 updatePottyOption={this.updatePottyOption}
                 addLetOut={this.addLetOut}
