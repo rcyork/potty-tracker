@@ -88,6 +88,11 @@ button {
   display: block;
 }
 
+.addDogButton:disabled,
+.doneButton.disabled {
+  background: var(--grey);
+}
+
 .addDogButton {
   margin-bottom: 3rem;
 }

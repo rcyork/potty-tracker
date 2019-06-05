@@ -9,6 +9,11 @@ router.get('/', (req, res) => {
   res.redirect(`/york/settings`);
 });
 
+// room
+router.get('/api/:roomKey', (req, res) => {
+  res.json(db.getRoom(req.params.roomKey));
+});
+
 // dogs
 router.post('/api/:roomKey/dogs', (req, res) => {
   const newDog = db.addDog(req.params.roomKey, req.body);

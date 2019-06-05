@@ -14,10 +14,7 @@ const POTTY_OPTIONS = ['1', '2', '3', '?', '-', '1+', '2+'];
 class App extends React.Component {
   state = {
     newDog: { name: '', color: 'red' },
-    dogs: [
-      { name: 'leo', color: 'blue', currentNumber: '1' },
-      { name: 'lucy', color: 'red', currentNumber: '1' },
-    ],
+    dogs: [],
     logs: [],
   };
 
@@ -28,10 +25,10 @@ class App extends React.Component {
       },
     } = this.props;
 
-    fetch(`/api/${roomKey}/logs`)
+    fetch(`/api/${roomKey}`)
       .then(res => res.json())
-      .then(logs => {
-        this.setState({ logs });
+      .then(res => {
+        this.setState({ dogs: res.dogs, logs: res.logs });
       })
       .catch(error => console.log(error));
   }
@@ -49,12 +46,24 @@ class App extends React.Component {
     });
   };
 
-  addLetOut = pottyNumbers => {
-    this.setState(prevState => {
-      return {
-        log: [{ date: new Date().toISOString, pottyNumbers }, ...prevState.log],
-      };
-    });
+  addLetOut = (pottyNumbers, roomKey) => {
+    fetch(`/api/${roomKey}/logs`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        date: new Date().toISOString(),
+        pottyNumbers: pottyNumbers,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        this.setState(prevState => ({
+          dogs: prevState.dogs.map(dog => {
+            return { ...dog, currentNumber: '1' };
+          }),
+          logs: [res, ...prevState.logs],
+        }));
+      });
   };
 
   deleteLogEntry = (roomKey, date) => {
@@ -168,19 +177,33 @@ class App extends React.Component {
     });
   };
 
-  onDogAdded = dogToAdd => {
-    this.setState(prevState => {
-      return {
-        dogs: [...prevState.dogs, dogToAdd],
-        newDog: { name: '', color: 'red' },
-      };
-    });
+  onDogAdded = (dogToAdd, roomKey) => {
+    fetch(`/api/${roomKey}/dogs`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(dogToAdd),
+    })
+      .then(res => res.json())
+      .then(res => {
+        this.setState(prevState => {
+          return {
+            dogs: [...prevState.dogs, { ...res, currentNumber: '1' }],
+            newDog: { name: '', color: 'red' },
+          };
+        });
+      });
   };
 
-  onDogDeleted = dogToDelete => {
-    this.setState(prevState => {
-      return { dogs: prevState.dogs.filter(dog => dog.name !== dogToDelete) };
-    });
+  onDogDeleted = (dogToDelete, roomKey) => {
+    fetch(`/api/${roomKey}/dogs/${dogToDelete}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    })
+      .then(res => res.json())
+      .then(res => {
+        this.setState({ dogs: res });
+      })
+      .catch(error => console.log(error));
   };
 
   render() {
@@ -203,6 +226,7 @@ class App extends React.Component {
               onColorChanged={this.onColorChanged}
               onDogAdded={this.onDogAdded}
               onDogDeleted={this.onDogDeleted}
+              roomKey={roomKey}
             />
           )}
         />
@@ -211,7 +235,7 @@ class App extends React.Component {
           path="/:roomKey"
           render={() => {
             if (!this.state.dogs || this.state.dogs.length === 0) {
-              return <Redirect to="/:roomKey/settings" />;
+              return <Redirect to={`/${roomKey}/settings`} />;
             }
 
             return (
@@ -220,6 +244,7 @@ class App extends React.Component {
                 dogs={this.state.dogs}
                 updatePottyOption={this.updatePottyOption}
                 addLetOut={this.addLetOut}
+                roomKey={roomKey}
               />
             );
           }}

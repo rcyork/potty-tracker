@@ -3,11 +3,11 @@
     "dogs": [
       {
         "name": "leo",
-        "color": "#333"
+        "color": "blue"
       },
       {
         "name": "lucy",
-        "color": "#fff"
+        "color": "red"
       }
     ],
     "logs": [

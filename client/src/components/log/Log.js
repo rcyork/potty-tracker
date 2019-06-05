@@ -48,7 +48,7 @@ export const Log = ({
   return (
     <div className="log">
       <div>
-        <Link to="/:roomKey" className="goHomeButton">
+        <Link to={`/${roomKey}`} className="goHomeButton">
           <i className="fas fa-home" />
           home
         </Link>

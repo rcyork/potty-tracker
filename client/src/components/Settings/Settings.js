@@ -25,6 +25,7 @@ export const Settings = ({
   onColorChanged,
   onDogAdded,
   onDogDeleted,
+  roomKey,
 }) => {
   const duplicateDogNames = dogs.find(dog => dog.name === newDog.name);
   const tooManyDogs = dogs.length >= 9;
@@ -73,16 +74,23 @@ export const Settings = ({
         <button
           disabled={duplicateDogNames || tooManyDogs || emptyNameInputField}
           className={`addDogButton`}
-          onClick={() => onDogAdded({ name: newDog.name, color: newDog.color })}
+          onClick={() =>
+            onDogAdded({ name: newDog.name, color: newDog.color }, roomKey)
+          }
         >
           <i className="fas fa-plus" /> add dog
         </button>
       </div>
       <div className="dogsListWrap">
         <div className="scrollingList">
-          <DogsList dogs={dogs} onDogDeleted={onDogDeleted} />
+          <DogsList dogs={dogs} onDogDeleted={onDogDeleted} roomKey={roomKey} />
         </div>
-        <Link className="doneButton" to="/">
+        <Link
+          className={`doneButton ${
+            !dogs || dogs.length === 0 ? 'disabled' : ''
+          }`}
+          to={`/${roomKey}`}
+        >
           <i className="fas fa-check" /> done
         </Link>
       </div>

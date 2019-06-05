@@ -7,6 +7,15 @@
   border-left: 2px solid black;
 }
 
+.noLetOutsWarning {
+  color: var(--grey);
+  font-size: 1rem;
+  text-align: center;
+  line-height: 3.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 .fiveOrMore .snapshot__time {
   font-size: 1rem; /* ensures potty snapshot doesn't expand beyond it's container when a large number of dogs are present*/
   color: black;

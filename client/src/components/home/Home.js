@@ -10,10 +10,11 @@ export const Home = ({
   dogs,
   updatePottyOption,
   addLetOut,
+  roomKey,
 }) => (
   <div className="home">
     <div className="navAndInfoBar">
-      <Link to="/settings" className="settingsIcon">
+      <Link to={`/${roomKey}/settings`} className="settingsIcon">
         <i className="fas fa-cog fa-2x" />
       </Link>
       <Snapshot mostRecentLetOut={mostRecentLetOut} dogs={dogs} />
@@ -36,7 +37,7 @@ export const Home = ({
       </div>
     </div>
     <div className="bottomButtonsWrap">
-      <Link to="/log" className="logLink">
+      <Link to={`/${roomKey}/log`} className="logLink">
         <i className="fas fa-clipboard-list fa-4x" />
       </Link>
       <button
@@ -47,6 +48,7 @@ export const Home = ({
               name: dog.name,
               pottyNumber: dog.currentNumber,
             })),
+            roomKey,
           )
         }
       >

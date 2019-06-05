@@ -6,7 +6,7 @@ const db = low(adapter);
 
 db.defaults({
   york: {
-    dogs: [{ name: 'leo', color: '#333' }, { name: 'lucy', color: '#fff' }],
+    dogs: [{ name: 'leo', color: 'blue' }, { name: 'lucy', color: 'red' }],
     logs: [
       {
         date: '2019-06-04T02:53:37.628Z',
@@ -38,6 +38,10 @@ db.defaults({
   },
 }).write();
 
+const getRoom = roomKey => {
+  return db.get(roomKey).value() || {};
+};
+
 const addRoom = roomKey => {
   db.set(roomKey, { dogs: [], logs: [] }).write();
 };
@@ -67,7 +71,7 @@ const addLog = (roomKey, log) => {
     db.set(`${roomKey}.logs`, [log]).write();
   } else {
     db.get(`${roomKey}.logs`)
-      .push(log)
+      .unshift(log)
       .write();
   }
 
@@ -96,6 +100,7 @@ const updateLog = (roomKey, date, log) => {
 };
 
 module.exports = {
+  getRoom,
   addRoom,
   addDog,
   removeDog,

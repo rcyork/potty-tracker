@@ -5,7 +5,7 @@ import './Snapshot.css';
 
 export const Snapshot = ({ mostRecentLetOut, dogs }) => {
   if (!mostRecentLetOut) {
-    return <p>no let out</p>;
+    return <p className="noLetOutsWarning">You have no let outs</p>;
   }
   return (
     <div className={`snapshot ${dogs.length >= 5 ? 'fiveOrMore' : null}`}>
