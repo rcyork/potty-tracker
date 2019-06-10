@@ -11,19 +11,27 @@ button {
   padding: 2rem 1rem 1rem;
   position: relative;
   display: grid;
-  grid-template-rows: max-content max-content 1fr;
+  grid-template-rows: max-content max-content max-content 1fr;
 }
 
-.dogNameInputLabel {
+.roomNameInputWrap,
+.dogNameInputWrap {
+  position: relative;
+}
+
+.dogNameInputLabel,
+.roomNameInputLabel {
   position: absolute;
-  top: 22px;
-  left: 30px;
+
+  left: 20px;
   padding: 0 0.5rem;
   font-size: 1.25rem;
   background: white;
+  top: -8px;
 }
 
-#dogNameInput {
+#dogNameInput,
+#roomNameInput {
   display: block;
   padding: 1rem 0.75rem;
   font-size: 1.75rem;
@@ -33,9 +41,10 @@ button {
   margin-bottom: 3rem;
 }
 
+#roomNameInput.inputWarning,
 #dogNameInput.inputWarning {
-  border-color: red;
   margin-bottom: 0.5rem;
+  border-color: red;
 }
 
 .inputWarningText {
