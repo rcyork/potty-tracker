@@ -38,6 +38,10 @@ db.defaults({
   },
 }).write();
 
+const checkRoom = roomKey => {
+  return db.has(roomKey).value();
+};
+
 const getRoom = roomKey => {
   return db.get(roomKey).value() || {};
 };
@@ -108,4 +112,5 @@ module.exports = {
   addLog,
   removeLog,
   updateLog,
+  checkRoom,
 };

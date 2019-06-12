@@ -14,25 +14,29 @@ export const App = () => {
   const [dogs, setDogs] = useState([]);
   const [logs, setLogs] = useState([]);
 
-  const fetchRoom = roomKey => {
+  const fetchRoom = React.useCallback(roomKey => {
     fetch(`/api/${roomKey}`)
       .then(res => res.json())
       .then(res => {
         setLogs(res.logs);
-        setDogs(res.dogs);
+        setDogs(
+          res.dogs.map(dog => {
+            return { ...dog, currentNumber: '1' };
+          }),
+        );
       })
       .catch(error => console.log(error));
-  };
+  }, []);
 
   const updatePottyOption = (name, number) => {
-    setDogs(() => {
+    setDogs(
       dogs.map(dog => {
         if (dog.name !== name) {
           return { ...dog };
         }
         return { ...dog, currentNumber: getNextPottyOption(number) };
-      });
-    });
+      }),
+    );
   };
 
   const addLetOut = (pottyNumbers, roomKey) => {
@@ -47,15 +51,13 @@ export const App = () => {
       .then(res => res.json())
 
       .then(res => {
-        setDogs(() => {
+        setDogs(
           dogs.map(dog => {
             return { ...dog, currentNumber: '1' };
-          });
-        });
+          }),
+        );
 
-        setLogs(() => {
-          return [res, ...logs];
-        });
+        setLogs([res, ...logs]);
       });
   };
 
@@ -64,11 +66,7 @@ export const App = () => {
       method: 'DELETE',
     })
       .then(res => res.json())
-      .then(
-        setLogs(() => {
-          logs.filter(entry => entry.date !== date);
-        }),
-      )
+      .then(setLogs(logs.filter(entry => entry.date !== date)))
       .catch(error => console.log(error));
   };
 
@@ -99,14 +97,14 @@ export const App = () => {
     })
       .then(res => res.json())
       .then(log => {
-        setLogs(() => {
+        setLogs(
           logs.map(entry => {
             if (entry.date !== log.date) {
               return entry;
             }
             return { ...entry, pottyNumbers: log.pottyNumbers };
-          });
-        });
+          }),
+        );
       })
       .catch(error => console.log(error));
   };
@@ -125,38 +123,63 @@ export const App = () => {
     return currentNumber;
   };
 
-  console.log('app');
-
   return (
     <div className="app">
       <BrowserRouter>
         <Switch>
-          {/* <Route exact path="/" render={() => <CreateRoom />} /> */}
-          <Route exact path="/:roomKey/settings" render={() => <Settings />} />
-          {/* <Route
-            exact
-            path="/:roomKey"
-            render={() => (
-              <Home
-                fetchRoom={fetchRoom}
-                mostRecentLetOut={logs[0]}
-                dogs={dogs}
-                updatePottyOption={updatePottyOption}
-                addLetOut={addLetOut}
-              />
-            )}
-          />
+          <Route exact path="/" render={() => <CreateRoom />} />
           <Route
-            path="/:roomKey/log"
-            render={() => (
-              <Log
-                logs={logs}
-                updateLogOption={updateLogOption}
-                dogs={dogs}
-                deleteLogEntry={deleteLogEntry}
-              />
-            )}
-          /> */}
+            path="/:roomKey"
+            render={({
+              match: {
+                params: { roomKey },
+              },
+            }) => {
+              return (
+                <Switch>
+                  <Route
+                    exact
+                    path="/:roomKey/settings"
+                    render={() => (
+                      <Settings
+                        fetchRoom={fetchRoom}
+                        dogs={dogs}
+                        roomKey={roomKey}
+                        setDogs={setDogs}
+                      />
+                    )}
+                  />
+                  <Route
+                    exact
+                    path="/:roomKey"
+                    render={() => (
+                      <Home
+                        fetchRoom={fetchRoom}
+                        mostRecentLetOut={logs[0]}
+                        dogs={dogs}
+                        updatePottyOption={updatePottyOption}
+                        addLetOut={addLetOut}
+                        roomKey={roomKey}
+                      />
+                    )}
+                  />
+                  <Route
+                    path="/:roomKey/log"
+                    render={() => (
+                      <Log
+                        logs={logs}
+                        updateLogOption={updateLogOption}
+                        dogs={dogs}
+                        deleteLogEntry={deleteLogEntry}
+                        fetchRoom={fetchRoom}
+                        roomKey={roomKey}
+                      />
+                    )}
+                  />
+                </Switch>
+              );
+            }}
+          />
         </Switch>
       </BrowserRouter>
     </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -14,7 +14,15 @@ export const Log = ({
   deleteLogEntry,
   roomKey,
   updateLogOption,
+  fetchRoom,
 }) => {
+  useEffect(
+    () => {
+      fetchRoom(roomKey);
+    },
+    [fetchRoom, roomKey],
+  );
+
   if (!logs || logs.length === 0) {
     return (
       <div className="log">
@@ -28,6 +36,7 @@ export const Log = ({
       </div>
     );
   }
+
   const logsSortedByDays = logs.reduce((acc, letOut) => {
     const dateLabel = moment(letOut.date).format('MMMM Do, YYYY');
     const matchingIndex = acc.findIndex(day => day[0] === dateLabel);

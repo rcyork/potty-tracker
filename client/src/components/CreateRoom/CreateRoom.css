@@ -1,0 +1,79 @@
+.instructions {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  padding-top: 1rem;
+  color: var(--black);
+}
+
+.createRoom {
+  padding: 1rem;
+}
+
+.roomNameInputWrap {
+  position: relative;
+}
+
+.roomNameInputLabel {
+  position: absolute;
+
+  left: 20px;
+  padding: 0 0.5rem;
+  font-size: 1.25rem;
+  background: white;
+  top: -8px;
+}
+
+#roomNameInput {
+  display: block;
+  padding: 1rem 0.75rem;
+  font-size: 1.75rem;
+  border-radius: 5px;
+  border: 2px solid black;
+  width: 100%;
+  margin-bottom: 3rem;
+}
+
+#roomNameInput.inputWarning {
+  border-color: var(--red);
+  margin-bottom: 0.5rem;
+}
+
+.joinOrCreateRoomButton,
+.cancel,
+.confirm {
+  font-size: 1.5rem;
+  border-radius: 5px;
+  padding: 1rem 2rem;
+  color: white;
+}
+
+.joinOrCreateRoomButton {
+  background: var(--blue);
+  margin: auto;
+  display: block;
+  width: max-content;
+}
+
+.joinOrCreateRoomButton.disabled {
+  background: var(--grey);
+}
+
+.roomHasBeenCheckedButtons {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-gap: 1rem;
+}
+
+.fa-users,
+.fa-plus {
+  margin-right: 1rem;
+}
+
+.cancel {
+  background: var(--red);
+}
+
+.confirm {
+  background: var(--green);
+}

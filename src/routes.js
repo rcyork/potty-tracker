@@ -4,12 +4,16 @@ const db = require('./db');
 
 const router = new Router();
 
-router.get('/', (req, res) => {
-  db.addRoom('york');
-  res.redirect(`/york/settings`);
+// room
+router.post('/api/rooms/:roomKey', (req, res) => {
+  db.addRoom(req.params.roomKey);
+  res.json({ success: true });
 });
 
-// room
+router.get('/api/check-rooms/:roomKey', (req, res) => {
+  res.json(db.checkRoom(req.params.roomKey));
+});
+
 router.get('/api/:roomKey', (req, res) => {
   res.json(db.getRoom(req.params.roomKey));
 });
