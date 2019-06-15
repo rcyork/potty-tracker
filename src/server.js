@@ -9,9 +9,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use('/', routes);
 
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '../client/build')));
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/index.html'));
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
 app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
