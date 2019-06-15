@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/server.js",
+  "engines": {
+    "node": "10.x"
+  },
   "scripts": {
     "client-dev": "cd client && npm run start",
-    "build": "cp -r src dist && cd client && npm run build && cp -r build/ ../dist/public",
+    "build": "cd client && npm run build && cp -r build/ ../public",
     "server-dev": "npm run watch-node",
     "watch-node": "NODE_ENV=test nodemon --delay 100ms --ignore db.json --exec \"rm -f db.json && node src/server.js\"",
     "dev": "concurrently npm:server-dev npm:client-dev",
