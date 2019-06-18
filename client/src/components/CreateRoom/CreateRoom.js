@@ -16,7 +16,6 @@ export const CreateRoom = () => {
     fetch(`/api/check-rooms/${roomKey}`)
       .then(res => res.json())
       .then(res => {
-        console.log(res);
         setIsNewRoomName(!res);
         setRoomHasBeenChecked(true);
       })
