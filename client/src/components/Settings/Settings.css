@@ -4,7 +4,6 @@ button {
 }
 
 .configureContainer {
-  width: 500px;
   margin: auto;
   background: white;
   height: 100vh;
@@ -50,7 +49,8 @@ button {
 
 .colorSelection {
   display: grid;
-  grid-auto-flow: column;
+  grid-template-columns: repeat(5, 1fr);
+  /* grid-auto-flow: column; */
   grid-gap: 0.5rem;
   margin-bottom: 3rem;
 }
@@ -96,4 +96,10 @@ button {
 
 .addDogButton {
   margin-bottom: 3rem;
+}
+
+@media all and (min-width: 400px) {
+  .colorSelection {
+    grid-template-columns: repeat(9, 1fr);
+  }
 }

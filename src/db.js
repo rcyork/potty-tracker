@@ -4,39 +4,39 @@ const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('db.json');
 const db = low(adapter);
 
-db.defaults({
-  york: {
-    dogs: [{ name: 'leo', color: 'blue' }, { name: 'lucy', color: 'red' }],
-    logs: [
-      {
-        date: '2019-06-04T02:53:37.628Z',
-        pottyNumbers: [
-          {
-            name: 'leo',
-            pottyNumber: '1',
-          },
-          {
-            name: 'lucy',
-            pottyNumber: '1',
-          },
-        ],
-      },
-      {
-        date: '2019-06-04T02:54:37.628Z',
-        pottyNumbers: [
-          {
-            name: 'leo',
-            pottyNumber: '3',
-          },
-          {
-            name: 'lucy',
-            pottyNumber: '3',
-          },
-        ],
-      },
-    ],
-  },
-}).write();
+// db.defaults({
+//   york: {
+//     dogs: [{ name: 'leo', color: 'blue' }, { name: 'lucy', color: 'red' }],
+//     logs: [
+//       {
+//         date: '2019-06-04T02:53:37.628Z',
+//         pottyNumbers: [
+//           {
+//             name: 'leo',
+//             pottyNumber: '1',
+//           },
+//           {
+//             name: 'lucy',
+//             pottyNumber: '1',
+//           },
+//         ],
+//       },
+//       {
+//         date: '2019-06-04T02:54:37.628Z',
+//         pottyNumbers: [
+//           {
+//             name: 'leo',
+//             pottyNumber: '3',
+//           },
+//           {
+//             name: 'lucy',
+//             pottyNumber: '3',
+//           },
+//         ],
+//       },
+//     ],
+//   },
+// }).write();
 
 const checkRoom = roomKey => {
   return db.has(roomKey).value();

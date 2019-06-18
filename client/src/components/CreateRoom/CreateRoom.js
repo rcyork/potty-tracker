@@ -11,12 +11,13 @@ export const CreateRoom = () => {
   const inputIsEmpty = !roomName || roomName.length === 0;
   const onRoomNameChange = text => {
     setRoomName(text);
-    checkRoom(text);
   };
   const checkRoom = roomKey => {
     fetch(`/api/check-rooms/${roomKey}`)
       .then(res => res.json())
       .then(res => {
+        console.log(res);
+        setIsNewRoomName(!res);
         setRoomHasBeenChecked(true);
       })
       .catch(error => console.log(error));
