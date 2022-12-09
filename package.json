@@ -40,7 +40,7 @@
     "arangojs": "^6.9.0",
     "body-parser": "^1.18.3",
     "config": "^3.0.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "lowdb": "^1.0.0",
     "mongodb": "^3.1.13"
   },
